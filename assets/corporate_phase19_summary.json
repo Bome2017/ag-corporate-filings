@@ -4,7 +4,7 @@
   "freeze_date": "2026-04-26",
   "process_label": "PARTIAL: Phase 19 completed but baseline/sector results weakened the claim",
   "scientific_verdict": "corporate signal survives but is weaker than simple baselines",
-  "final_classification": "LOCKED / research-grade extension / not production / weaker than banking / worth preserving",
+  "final_classification": "LOCKED / research-grade SEC public-company extension / not production / worth preserving",
   "anchor_refresh": {
     "window": "2026-01-01 to 2026-04-26",
     "n_efts_candidates": 30,

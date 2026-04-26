@@ -1,8 +1,8 @@
 {
   "title": "Corporate A/G Research Extension",
   "subtitle": "A public SEC filings study of structural distress and corporate deterioration regimes.",
-  "status": "Research-grade — not production — weaker than banking",
-  "final_classification": "LOCKED / research-grade extension / not production / weaker than banking / worth preserving",
+  "status": "Research-grade — not production",
+  "final_classification": "LOCKED / research-grade SEC public-company extension / not production / worth preserving",
   "frozen_at_phase": 19,
   "freeze_date": "2026-04-26",
   "dataset": {
@@ -38,14 +38,14 @@
       "Interest coverage (single primitive; AUROC 0.726)"
     ],
     "composite_added_value": "interpretive architecture and robustness, not maximum AUROC",
-    "comparison_to_banking": "research-grade extension; weaker than banking; banking remains flagship"
+    "claim_boundary": "research-grade SEC public-company extension; constrained by SEC/XBRL heterogeneity, sector variation, low-base-rate Chapter 11 / Item 1.03 distress labels, and imperfect Item 1.03 anchor coverage; not a production risk model, automated decision system, investment tool, credit rating, or replacement for credit analysis"
   },
   "allowed_claim_summary": [
     "research-grade preliminary full-population screening evidence",
     "eligible SEC non-financial operating-company universe under project filters",
     "ranked monitoring / triage primitive",
-    "domain-specific A/G transfer attempt",
-    "weaker than the banking branch",
+    "A/G-style structural decomposition adapted to SEC public-company filings",
+    "research-grade extension subject to SEC/XBRL constraints",
     "not production-ready",
     "not a bankruptcy prediction product",
     "Watch band (80–95th percentile of structural distress) is the most informative monitoring tier",
@@ -60,7 +60,6 @@
     "investment advice",
     "credit rating",
     "top bankruptcy risks / highest-risk companies / likely to fail",
-    "works as well as banking",
     "the A/G composite improves on simple financial primitives (it does not, on this data)",
     "top-1% structural-distress flags are highest-priority (tail dropoff)",
     "canonical R is validated (only first internal evidence)"

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Methodology of the Corporate A/G Research Extension — data sources, universe construction, G/A primitives, geometry definitions, and how corporate differs from the banking branch.">
+  <meta name="description" content="Methodology of the Corporate A/G Research Extension — data sources, universe construction, G/A primitives, geometry definitions, and the corporate-specific constraints that shape the geometry.">
   <title>Methodology — Corporate A/G Research Extension</title>
   <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -108,10 +108,12 @@
       apart (divergence / masking).
     </p>
     <p>
-      Corporate uses <strong>state-vector geometry</strong>, not
-      the banking branch&rsquo;s MHI dashboard doctrine. The
+      Corporate uses <strong>state-vector geometry</strong>: the
       geometries below are operations on standardized G and A
-      aggregates, not on a single composite scalar.
+      aggregates, not on a single composite scalar. This keeps the
+      structural-vs-operating decomposition explicit and lets
+      different distress regimes (joint collapse, divergence /
+      masking) be separated rather than collapsed into one number.
     </p>
 
     <h3>Transforms (train-only fit)</h3>
@@ -161,14 +163,19 @@
       validation is deferred to a future phase.
     </p>
 
-    <h2>5. Why corporate differs from banking</h2>
+    <h2>5. Why corporate requires its own geometry</h2>
+    <p>
+      Corporate SEC/XBRL analysis has constraints that shape what
+      this extension can and cannot claim. These constraints define
+      the corporate claim boundary; they are not deficiencies
+      relative to any other domain.
+    </p>
     <ul>
-      <li><strong>Banking has standardized regulatory call reports</strong> (FDIC / Federal Reserve quarterly), with a long failure history. Bank-failure anchors are clean and exhaustive.</li>
-      <li><strong>Corporate SEC / XBRL data is messier.</strong> Tag heterogeneity, restatements, late filings, and small-cap shells all add noise.</li>
-      <li><strong>Corporate Ch.11 is a low-base-rate event</strong>, on the order of 0.5 – 1.0% per year for the eligible public-company universe.</li>
-      <li><strong>Corporate sector heterogeneity is large.</strong> Manufacturing, Wholesale/Retail, and Services have different distress patterns and disclosure conventions.</li>
-      <li><strong>Anchor coverage is incomplete.</strong> Corporate uses Item 1.03 8-Ks only — missing some Chapter-7 paths and bankruptcy events filed under Items 5.02 / 8.01 attachments.</li>
-      <li><strong>Banking remains the project&rsquo;s flagship.</strong> Corporate is a domain-specific A/G transfer attempt, weaker than banking.</li>
+      <li><strong>SEC / XBRL data is heterogeneous.</strong> Tag variation across filers, restatements, late filings, and small-cap shells all add noise that the geometry has to absorb.</li>
+      <li><strong>Chapter 11 / Item 1.03 distress is a low-base-rate event</strong>, on the order of 0.5 – 1.0% per year for the eligible public-company universe. This caps achievable precision at any practical operating threshold.</li>
+      <li><strong>Sector heterogeneity is large.</strong> Manufacturing, Wholesale/Retail, and Services have different distress patterns and disclosure conventions, so pooled metrics hide cell-to-cell variation.</li>
+      <li><strong>Anchor coverage is imperfect.</strong> Corporate uses Item 1.03 8-Ks only — missing some Chapter-7 paths and bankruptcy events filed under Items 5.02 / 8.01 attachments.</li>
+      <li><strong>State-vector geometry is the right shape for these constraints.</strong> Keeping G and A separate lets the distinct regimes (joint collapse vs divergence / masking) be diagnosed rather than averaged out into a single risk score.</li>
     </ul>
 
     <h2>6. What was not done</h2>
