@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Phase 19 calibration / monitoring-band policy for the Corporate A/G Research Extension. Watch band is the most informative tier; top-1% Critical band shows tail dropoff.">
+  <title>Calibration Policy — Corporate A/G Research Extension</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="site-head-inner">
+      <span class="brand"><a href="../index.html">Corporate A/G Research Extension</a></span>
+      <span class="brand-sub">SEC public-company structural distress study</span>
+    </div>
+  </header>
+  <nav class="site-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="../index.html">Overview</a>
+      <a href="../methodology.html">Methodology</a>
+      <a href="../validation.html">Validation</a>
+      <a href="../evidence.html" class="current">Evidence</a>
+      <a href="../limitations.html">Limitations</a>
+      <a href="../commercial-use.html">Commercial Use</a>
+    </div>
+  </nav>
+
+  <section class="page-head">
+    <div class="page-head-inner">
+      <p class="page-head-eyebrow">Document &middot; Calibration Policy</p>
+      <h1>Calibration / Monitoring-Band Policy</h1>
+      <p class="lead">A research-grade quantile-band monitoring policy for the structural-distress score. Predeclared cuts; no F1 tuning; designed for triage, not automated decisions.</p>
+    </div>
+  </section>
+
+  <main>
+    <section class="doc-summary">
+      <h2>Summary</h2>
+      <p>
+        The Phase-19 calibration policy defines five monitoring
+        bands by fixed quantile cuts on the test-fold
+        structural-distress score distribution. The bands are
+        operator-facing triage primitives, not automated
+        decisions. The Watch band (80–95th percentile) is the
+        most informative tier; the top-1% Critical band shows
+        a tail dropoff and is noise-prone.
+      </p>
+    </section>
+
+    <h2>The five predeclared bands</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Band</th><th>Percentile</th><th class="num">n in band</th><th class="num">Pos in band</th><th class="num">Event rate</th><th class="num">Lift</th><th class="num">Recall captured</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Normal / background</td><td>0–60</td><td class="num">11,646</td><td class="num">49</td><td class="num">0.42%</td><td class="num">0.35</td><td class="num">21%</td></tr>
+          <tr><td>Elevated</td><td>60–80</td><td class="num">3,882</td><td class="num">76</td><td class="num">1.96%</td><td class="num">1.65</td><td class="num">33%</td></tr>
+          <tr style="font-weight:600;"><td>Watch</td><td>80–95</td><td class="num">2,911</td><td class="num">90</td><td class="num">3.09%</td><td class="num">2.60</td><td class="num">39%</td></tr>
+          <tr><td>High structural concern</td><td>95–99</td><td class="num">745</td><td class="num">15</td><td class="num">2.01%</td><td class="num">1.69</td><td class="num">6.5%</td></tr>
+          <tr><td>Critical / inspect manually</td><td>99–100</td><td class="num">226</td><td class="num">1</td><td class="num">0.44%</td><td class="num">0.37</td><td class="num">0.4%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Headline reads</h2>
+    <ul>
+      <li><strong>Watch band (80–95) is the most informative tier.</strong> Event rate 3.1%, lift 2.6×, captures 39% of strict positives in 15% of the universe.</li>
+      <li><strong>Bottom 60% is "below the screening line", not "safe".</strong> 21% of strict positives still live below the 60th percentile.</li>
+      <li><strong>High structural concern (95–99)</strong> is similar to Elevated in lift but captures only 6.5% of positives.</li>
+      <li><strong>Top-1% Critical band has lower event rate than the Watch band.</strong> See the tail-dropoff notice below.</li>
+    </ul>
+
+    <h2>Tail-dropoff notice</h2>
+    <div class="callout warn">
+      <p>
+        The Critical / top-1 % band <em>does not</em> have the
+        highest event rate. Its lift is below 1.0 (worse than
+        random for that slice). This is consistent with the
+        Phase-18 pooled top-1% lift of 0.43×, and is honestly
+        flagged here. Operators should treat the top 1% as
+        <strong>noise-prone</strong>, not as the highest-priority
+        flag. The Watch band is the actionable tier; the
+        Critical band is for human review of extreme outliers
+        (some of which are real distress, some of which are
+        data-quality outliers).
+      </p>
+    </div>
+
+    <h2>Why these bands and not F1-tuned cutoffs</h2>
+    <ul>
+      <li>Monitoring-inspection capacity scales as a fixed fraction of the universe; quantile cuts match that operating reality.</li>
+      <li>F1 collapses at low base rate (here ~ 1.2%); tuning to it would over-fit threshold to a single fold.</li>
+      <li>The cuts are predeclared, not chosen to maximize any metric.</li>
+    </ul>
+
+    <h2>What this is and is not</h2>
+    <div class="callout">
+      <p>
+        These bands are <strong>research-grade triage
+        primitives</strong>. They are not automated decisions,
+        not deployment thresholds, and not calibrated
+        probabilities. Each company appearing in any band
+        requires manual inspection. Lift 2.6× on a 1% base rate
+        means roughly 3% precision in the Watch band — useful
+        for triage, not for action.
+      </p>
+    </div>
+
+    <div class="source-basis">
+      <strong>Source basis:</strong> public summary of
+      <code>CORPORATE_PHASE19_CALIBRATION_POLICY.md</code> and
+      <code>processed/phase19_threshold_policy_table.csv</code>
+      in the project repository.
+    </div>
+
+    <p class="small muted">Back to <a href="../validation.html">Validation</a> &middot; <a href="../evidence.html">Evidence</a> &middot; <a href="index.html">Documents index</a>.</p>
+  </main>
+
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <div><strong>Corporate A/G Research Extension</strong><br>Built on public SEC EDGAR data.<br>Locked Phase 19 freeze, 2026-04-26.</div>
+      <div><ul><li><a href="../methodology.html">Methodology</a></li><li><a href="../limitations.html">Limitations</a></li><li><a href="../commercial-use.html">Commercial use &amp; contact</a></li></ul></div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Phase 19 integrated decision note for the Corporate A/G Research Extension. Summarizes anchor refresh, sector stratification, calibration policy, baseline comparison, and the divergence-anchor study.">
+  <title>Phase 19 Decision Note — Corporate A/G Research Extension</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="site-head-inner">
+      <span class="brand"><a href="../index.html">Corporate A/G Research Extension</a></span>
+      <span class="brand-sub">SEC public-company structural distress study</span>
+    </div>
+  </header>
+  <nav class="site-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="../index.html">Overview</a>
+      <a href="../methodology.html">Methodology</a>
+      <a href="../validation.html">Validation</a>
+      <a href="../evidence.html" class="current">Evidence</a>
+      <a href="../limitations.html">Limitations</a>
+      <a href="../commercial-use.html">Commercial Use</a>
+    </div>
+  </nav>
+
+  <section class="page-head">
+    <div class="page-head-inner">
+      <p class="page-head-eyebrow">Document &middot; Phase 19 Decision</p>
+      <h1>Phase 19 Decision Note</h1>
+      <p class="lead">Integrated two-label decision across the five Phase-19 hardening tracks (anchor refresh, sector stratification, calibration policy, baseline comparison, divergence anchor) plus the corporate folder freeze.</p>
+    </div>
+  </section>
+
+  <main>
+    <section class="doc-summary">
+      <h2>Summary</h2>
+      <p>
+        Phase 19 ran five hardening tracks against the locked
+        Phase-18 result. Four tracks confirmed or refined the
+        finding; one — the baseline comparison — produced an
+        uncomfortable result: two single primitives slightly
+        outperform the A/G composite on AUROC. The honest
+        Phase-19 summary preserves the corporate signal&rsquo;s
+        legitimacy but downgrades the strongest version of the
+        composite-vs-primitives claim.
+      </p>
+    </section>
+
+    <h2>The five hardening tracks</h2>
+    <h3>1. Anchor refresh (out-of-time)</h3>
+    <p>
+      A bounded EDGAR FTS refresh from 2026-01-01 → today
+      found 6 new high-confidence Item-1.03 anchors; 5 of 6
+      are already in the Phase-18 panel. The 22-row out-of-time
+      descriptive check is consistent with Phase 18 in
+      direction (mean percentile 56–62 for structural distress)
+      but is too small to support a statistical claim. Full
+      writeup: <a href="anchor-refresh.html">Anchor Refresh
+      Note</a>.
+    </p>
+
+    <h3>2. Sector stratification</h3>
+    <p>
+      Pooled AUROC 0.711 is broadly distributed across the
+      reliable SIC divisions (Manufacturing-2 0.729,
+      Wholesale/Retail 0.742, Manufacturing-3 0.639). The
+      Manufacturing-3 (durables / electronics) cell is
+      meaningfully weaker than the pooled headline. Smaller
+      cells are flagged DESCRIPTIVE_ONLY or NO_STRONG_CLAIM.
+      Full writeup: <a href="sector-analysis.html">Sector
+      Analysis</a>.
+    </p>
+
+    <h3>3. Calibration / monitoring bands</h3>
+    <p>
+      Predeclared (not tuned) quantile bands on the
+      structural-distress test-fold distribution. The Watch
+      band (80–95th percentile) is the most informative tier
+      (event rate 3.1%, lift 2.6×, recall 39%). The top-1%
+      Critical band shows a tail dropoff (event rate 0.4%,
+      lift 0.37×) and is noise-prone. Full writeup:
+      <a href="calibration-policy.html">Calibration Policy</a>.
+    </p>
+
+    <h3>4. Baseline comparison (uncomfortable)</h3>
+    <div class="callout uncomf">
+      <p style="margin:0;">
+        Two single-primitive baselines slightly outperform the
+        A/G composite on AUROC: operating cash flow / assets
+        0.736, interest coverage 0.726, vs structural distress
+        0.711. The composite&rsquo;s value is robustness and
+        regime separation, not maximum raw discrimination.
+      </p>
+    </div>
+    <p>
+      Full writeup: <a href="baseline-comparison.html">Baseline
+      Comparison</a>.
+    </p>
+
+    <h3>5. Divergence-anchor study</h3>
+    <p>
+      Within the divergence-state cohort (firm-years where A
+      &gt; 0 and G &lt; 0), the canonical R / divergence
+      geometry posts AUROC 0.705 — beating structural distress
+      (0.666) and joint-collapse severity (0.468 chance) for
+      future structural deterioration. This is
+      <strong>first internal evidence</strong> that canonical R
+      behaves as predicted for its intended divergence /
+      masking regime. The anchor is internal future-state, not
+      external. Full writeup:
+      <a href="divergence-anchor.html">Divergence-Anchor
+      Study</a>.
+    </p>
+
+    <h2>Two-label decision</h2>
+    <div class="metrics">
+      <dl>
+        <dt>Process label</dt>
+        <dd><strong>PARTIAL: Phase 19 completed but baseline/sector results weakened the claim</strong></dd>
+        <dt>Scientific verdict</dt>
+        <dd><strong>corporate signal survives but is weaker than simple baselines</strong></dd>
+      </dl>
+    </div>
+
+    <h2>Why "PARTIAL" and not "ADVANCED"</h2>
+    <ul>
+      <li>All five hardening tracks shipped end-to-end (no blockers).</li>
+      <li>But the baseline comparison returned the uncomfortable finding that single primitives match or slightly beat the composite on AUROC.</li>
+      <li>Sector stratification revealed Manufacturing-3 as a noticeably weaker cell.</li>
+      <li>Combined, these weaken the "the composite adds architecture" claim without invalidating "the signal is real."</li>
+    </ul>
+
+    <h2>What stays locked</h2>
+    <ul class="tight-list">
+      <li>All Phase 1 / 7 / 8 / 11 / 12 / 13 / 15 / 16 / 17 / 18 / 18A specs and outputs (20 baseline artifacts byte-identical).</li>
+      <li>Phase-13 geometry definitions; Phase-11 winsorize + robust-z; coverage gate at 0.75; λ ∈ {0.0, 0.5, 1.0} with corporate primary at λ = 0.</li>
+      <li>The fetch-completion gate added in the Phase-18 operational correction.</li>
+    </ul>
+
+    <h2>Recommended next focus</h2>
+    <p>
+      Higher-ed Task #15 (A-layer + multi-year panel + closure
+      / HCM anchor join). Higher-ed is at the
+      "Phase 11 / 12 corporate" stage; one more higher-ed step
+      adds more scientific evidence than one more corporate
+      Phase-20 step. If a corporate Phase 20 is later required,
+      the highest-marginal-value candidate is external
+      divergence-anchor validation.
+    </p>
+
+    <div class="source-basis">
+      <strong>Source basis:</strong> this is a public summary of
+      <code>CORPORATE_PHASE19_DECISION_NOTE.md</code> in the
+      project repository.
+    </div>
+
+    <p class="small muted">Back to <a href="../validation.html">Validation</a> &middot; <a href="../evidence.html">Evidence</a> &middot; <a href="index.html">Documents index</a>.</p>
+  </main>
+
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <div><strong>Corporate A/G Research Extension</strong><br>Built on public SEC EDGAR data.<br>Locked Phase 19 freeze, 2026-04-26.</div>
+      <div><ul><li><a href="../methodology.html">Methodology</a></li><li><a href="../limitations.html">Limitations</a></li><li><a href="../commercial-use.html">Commercial use &amp; contact</a></li></ul></div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Phase 19 internal divergence-anchor study. First internal evidence that the canonical R / divergence geometry behaves as predicted for its intended divergence/masking regime.">
+  <title>Divergence-Anchor Study — Corporate A/G Research Extension</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="site-head-inner">
+      <span class="brand"><a href="../index.html">Corporate A/G Research Extension</a></span>
+      <span class="brand-sub">SEC public-company structural distress study</span>
+    </div>
+  </header>
+  <nav class="site-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="../index.html">Overview</a>
+      <a href="../methodology.html">Methodology</a>
+      <a href="../validation.html">Validation</a>
+      <a href="../evidence.html" class="current">Evidence</a>
+      <a href="../limitations.html">Limitations</a>
+      <a href="../commercial-use.html">Commercial Use</a>
+    </div>
+  </nav>
+
+  <section class="page-head">
+    <div class="page-head-inner">
+      <p class="page-head-eyebrow">Document &middot; Divergence-Anchor Study</p>
+      <h1>Divergence-Anchor Study</h1>
+      <p class="lead">An internal future-state anchor study. First internal evidence that the canonical R / divergence geometry behaves as the Phase-13 doctrine predicted for its intended regime.</p>
+    </div>
+  </section>
+
+  <main>
+    <section class="doc-summary">
+      <h2>Summary</h2>
+      <p>
+        Within the divergence-state cohort (firm-years where
+        A &gt; 0 and G &lt; 0 — the "healthy-looking earnings,
+        weak balance-sheet ground" pattern), the divergence /
+        masking geometry posts AUROC 0.705 for predicting
+        future structural deterioration — beating structural
+        distress (0.666) and joint-collapse severity (0.468
+        chance). This is <strong>first internal evidence</strong>
+        for the divergence regime hypothesis. It is internal
+        future-state, not external.
+      </p>
+    </section>
+
+    <h2>Anchor definitions (predeclared)</h2>
+    <h3>Divergence-state firm-year (at FY t)</h3>
+    <p>
+      A firm-year qualifies as divergence-state if, at year t,
+      both:
+    </p>
+    <ul>
+      <li>A_score(t) &gt; 0 (above-median operating appearance), AND</li>
+      <li>G_score(t) &lt; 0 (below-median structural ground).</li>
+    </ul>
+
+    <h3>Future-deterioration positive (at FY t)</h3>
+    <p>
+      Positive if, at FY t+1 or t+2, EITHER:
+    </p>
+    <ul>
+      <li>G drops by ≥ 1 z-score-unit from its FY-t value, OR</li>
+      <li>The firm enters anchored pre-petition state.</li>
+    </ul>
+    <p>
+      Negative if forward observation exists (the firm has at
+      least one row at t+1 or t+2) and neither condition holds.
+    </p>
+
+    <h2>Cohort sizes</h2>
+    <div class="metrics">
+      <dl>
+        <dt>Phase-18 panel rows (post-gate)</dt><dd>36,041</dd>
+        <dt>FY 2019–2023 rows (observation window)</dt><dd>13,582</dd>
+        <dt>Divergence-state rows</dt><dd>2,626</dd>
+        <dt>With ≥ 1 forward observation</dt><dd>2,573</dd>
+        <dt>Future-deterioration positives</dt><dd>280 (10.9%)</dd>
+      </dl>
+    </div>
+
+    <h2>Within the divergence-state cohort</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Geometry</th><th class="num">n_rows</th><th class="num">n_pos</th><th class="num">Base rate</th><th class="num">AUROC</th><th class="num">AP</th><th class="num">Lift @ 10%</th></tr></thead>
+        <tbody>
+          <tr><td>Structural distress</td><td class="num">2,573</td><td class="num">280</td><td class="num">0.109</td><td class="num">0.666</td><td class="num">0.183</td><td class="num">1.86×</td></tr>
+          <tr><td>Joint-collapse severity</td><td class="num">2,573</td><td class="num">280</td><td class="num">0.109</td><td class="num">0.468 (chance)</td><td class="num">0.126</td><td class="num">1.79×</td></tr>
+          <tr><td><strong>Divergence / masking</strong></td><td class="num">2,573</td><td class="num">280</td><td class="num">0.109</td><td class="num"><strong>0.705</strong></td><td class="num">0.186</td><td class="num">1.82×</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Comparison to all-comers cohort</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Geometry</th><th class="num">Divergence-state AUROC</th><th class="num">All-comers AUROC</th></tr></thead>
+        <tbody>
+          <tr><td>Structural distress</td><td class="num">0.666</td><td class="num">0.465 (mean reversion)</td></tr>
+          <tr><td>Joint-collapse severity</td><td class="num">0.468 (chance)</td><td class="num">0.552</td></tr>
+          <tr><td><strong>Divergence / masking</strong></td><td class="num"><strong>0.705</strong></td><td class="num">0.342 (mean reversion)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Headline reads</h2>
+    <ul>
+      <li>The divergence / masking geometry leads on the divergence-state cohort by 4 pp over structural distress.</li>
+      <li>The 36-pp swing for the divergence geometry between cohorts (0.342 broad → 0.705 in divergence-state) is too large to attribute to noise.</li>
+      <li>This is the first piece of evidence that the canonical R geometry behaves as the Phase-13 doctrine predicted — useful for the divergence regime, not for broad Chapter 11 / Item 1.03 distress screening.</li>
+      <li>Joint-collapse severity is at chance on the divergence-state cohort, consistent with its role as a near-petition severity geometry rather than a transition predictor.</li>
+    </ul>
+
+    <h2>Caveats</h2>
+    <div class="callout warn">
+      <ul style="margin:0;">
+        <li><strong>Internal anchor.</strong> The future-deterioration label is constructed from the panel itself, not from an external bankruptcy or restatement event source.</li>
+        <li><strong>Predeclared but limited.</strong> The divergence-state thresholds (A &gt; 0, G &lt; 0) and the deterioration threshold (G drop ≥ 1 z) are predeclared, but their sensitivity has not been swept in this study.</li>
+        <li><strong>External validation pending.</strong> A future-phase study using restatements, going-concern warnings, or material-weakness disclosures would convert this into external validation.</li>
+      </ul>
+    </div>
+
+    <h2>Wording boundary</h2>
+    <ul>
+      <li>✓ "First internal evidence supporting canonical R for the divergence regime."</li>
+      <li>✓ "Internal future-state anchor; external validation pending."</li>
+      <li>✗ "Canonical R is validated."</li>
+      <li>✗ "Divergence regime is established."</li>
+      <li>✗ "Canonical R predicts bankruptcy."</li>
+    </ul>
+
+    <div class="source-basis">
+      <strong>Source basis:</strong> public summary of
+      <code>CORPORATE_PHASE19_DIVERGENCE_ANCHOR_STUDY.md</code>
+      and <code>processed/phase19_divergence_anchor_results.csv</code>
+      in the project repository.
+    </div>
+
+    <p class="small muted">Back to <a href="../validation.html">Validation</a> &middot; <a href="../evidence.html">Evidence</a> &middot; <a href="index.html">Documents index</a>.</p>
+  </main>
+
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <div><strong>Corporate A/G Research Extension</strong><br>Built on public SEC EDGAR data.<br>Locked Phase 19 freeze, 2026-04-26.</div>
+      <div><ul><li><a href="../methodology.html">Methodology</a></li><li><a href="../limitations.html">Limitations</a></li><li><a href="../commercial-use.html">Commercial use &amp; contact</a></li></ul></div>
+    </div>
+  </footer>
+</body>
+</html>

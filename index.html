@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Corporate A/G Research Extension — a public SEC filings study of structural distress and corporate deterioration regimes. Research-grade, not a prediction product.">
+  <title>Corporate A/G Research Extension</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="site-head-inner">
+      <span class="brand"><a href="index.html">Corporate A/G Research Extension</a></span>
+      <span class="brand-sub">SEC public-company structural distress study</span>
+    </div>
+  </header>
+  <nav class="site-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="index.html" class="current">Overview</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="validation.html">Validation</a>
+      <a href="evidence.html">Evidence</a>
+      <a href="limitations.html">Limitations</a>
+      <a href="commercial-use.html">Commercial Use</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Research extension &middot; locked at Phase 19 &middot; 2026-04-26</p>
+      <h1>Corporate A/G Research Extension</h1>
+      <p class="lead">A public SEC filings study of structural distress and corporate deterioration regimes.</p>
+      <div class="badge-row">
+        <span class="badge">Research-grade</span>
+        <span class="badge">Full-population validation completed</span>
+        <span class="badge warn">Not a prediction product</span>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <p>
+      This site documents a research extension of the
+      A/G framework to public SEC company filings. It tests
+      whether structural-financial deterioration patterns can
+      be separated into interpretable regimes across eligible
+      non-financial operating companies. It is a research-grade
+      evidence portal, not a service.
+    </p>
+
+    <h2>What the evidence says</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Signal survives full-population testing</h3>
+        <p>Structural distress remains the strongest A/G composite screen under full eligible-universe testing on 3,412 admitted CIKs.</p>
+      </div>
+      <div class="card">
+        <h3>The signal attenuates</h3>
+        <p>Performance drops from enriched / sample settings to the harder full-population base-rate setting (about 1% per year).</p>
+      </div>
+      <div class="card">
+        <h3>Simple primitives matter</h3>
+        <p>Operating cash flow / assets and interest coverage slightly outperform the composite on AUROC.</p>
+      </div>
+      <div class="card">
+        <h3>Value is structural interpretation</h3>
+        <p>The A/G architecture separates broad structural distress, joint-collapse severity, and divergence / masking — not a single discrimination edge.</p>
+      </div>
+    </div>
+
+    <h2>At a glance</h2>
+    <div class="metrics">
+      <dl>
+        <dt>Dataset</dt><dd>Eligible SEC non-financial operating companies under project filters</dd>
+        <dt>Admitted CIKs</dt><dd>3,412</dd>
+        <dt>Panel rows</dt><dd>38,748</dd>
+        <dt>Post-gate rows</dt><dd>36,041</dd>
+        <dt>Test rows</dt><dd>19,410 (FY 2019–2025)</dd>
+        <dt>Strict / direct positives</dt><dd>231</dd>
+        <dt>All-anchored positives</dt><dd>354</dd>
+        <dt>Primary composite screen</dt><dd>Structural distress</dd>
+        <dt>Status</dt><dd>Research-grade / not production</dd>
+      </dl>
+    </div>
+
+    <h2>Main finding</h2>
+    <div class="callout accent">
+      <p>
+        The full-population signal survives with attenuation.
+        <strong>Structural distress is the strongest A/G
+        composite screen</strong>, but two simple financial
+        primitives — operating cash flow / assets and interest
+        coverage — slightly outperform it on AUROC. The corporate
+        extension is best understood as a research-grade
+        <strong>structural interpretation layer</strong>, not as
+        a maximum-discrimination prediction tool.
+      </p>
+    </div>
+
+    <h2>Key validation table</h2>
+    <p>
+      Phase 18 full-population pooled metrics on the test fold
+      (FY 2019–2025; 19,410 rows; 500-resample CIK-cluster bootstrap CIs).
+    </p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Geometry</th>
+            <th class="code">Internal metric</th>
+            <th class="num">AUROC (strict)</th>
+            <th class="num">AUROC (anchored)</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Structural distress</strong></td>
+            <td class="code">structural_distress_lam0_0</td>
+            <td class="num"><strong>0.711</strong></td>
+            <td class="num"><strong>0.683</strong></td>
+            <td>Primary A/G composite screen</td>
+          </tr>
+          <tr>
+            <td>Joint-collapse severity</td>
+            <td class="code">co_collapse_lam0_0</td>
+            <td class="num">0.677</td>
+            <td class="num">0.642</td>
+            <td>Near-petition / joint-deterioration geometry</td>
+          </tr>
+          <tr>
+            <td>Divergence / masking</td>
+            <td class="code">neg_R_lam0_0</td>
+            <td class="num">0.489</td>
+            <td class="num">0.510</td>
+            <td>Not a broad Chapter 11 / Item 1.03 distress screen; retained for divergence regime</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted small">
+      Pooled base rate 1.19% strict / 1.82% all-anchored. CIs for both candidate
+      geometries cleanly exclude the 0.5 chance line; <code>neg_R</code> brackets 0.5,
+      consistent with its role as a divergence diagnostic rather than a Ch.11 screen.
+    </p>
+
+    <h2>Claim boundary (compact)</h2>
+    <div class="callout">
+      <p>
+        Corporate A/G is a research-grade SEC public-company
+        structural-distress extension. It is <strong>not</strong> a
+        bankruptcy prediction product, <strong>not</strong> a credit
+        rating, <strong>not</strong> investment advice, and
+        <strong>not</strong> a replacement for credit analysis.
+        The full discipline is on the <a href="limitations.html">Limitations</a>
+        page; the operator&rsquo;s public claim discipline lives in
+        <a href="docs/final-freeze.html">Final Freeze Note</a>.
+      </p>
+    </div>
+
+    <h2>Where to go next</h2>
+    <ul class="tight-list">
+      <li><a href="methodology.html">Methodology</a> &mdash; data sources, universe construction, geometry definitions, why corporate differs from banking.</li>
+      <li><a href="validation.html">Validation</a> &mdash; full-population pooled metrics, comparison chain, baseline comparison, calibration policy, divergence study.</li>
+      <li><a href="evidence.html">Evidence</a> &mdash; rendered summaries of the source documents.</li>
+      <li><a href="limitations.html">Limitations</a> &mdash; the blunt list of what this is not.</li>
+      <li><a href="commercial-use.html">Commercial Use</a> &mdash; access boundary and contact.</li>
+    </ul>
+  </main>
+
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <div>
+        <strong>Corporate A/G Research Extension</strong><br>
+        Built on public SEC EDGAR data.<br>
+        Locked Phase 19 freeze, 2026-04-26.
+      </div>
+      <div>
+        <ul>
+          <li><a href="evidence.html">Source documents</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+          <li><a href="commercial-use.html">Commercial use &amp; contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

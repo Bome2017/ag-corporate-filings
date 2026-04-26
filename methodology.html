@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Methodology of the Corporate A/G Research Extension — data sources, universe construction, G/A primitives, geometry definitions, and how corporate differs from the banking branch.">
+  <title>Methodology — Corporate A/G Research Extension</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="site-head-inner">
+      <span class="brand"><a href="index.html">Corporate A/G Research Extension</a></span>
+      <span class="brand-sub">SEC public-company structural distress study</span>
+    </div>
+  </header>
+  <nav class="site-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="index.html">Overview</a>
+      <a href="methodology.html" class="current">Methodology</a>
+      <a href="validation.html">Validation</a>
+      <a href="evidence.html">Evidence</a>
+      <a href="limitations.html">Limitations</a>
+      <a href="commercial-use.html">Commercial Use</a>
+    </div>
+  </nav>
+
+  <section class="page-head">
+    <div class="page-head-inner">
+      <p class="page-head-eyebrow">Methodology</p>
+      <h1>Data, universe, and geometry</h1>
+      <p class="lead">All inputs are public SEC EDGAR data. The pipeline applies disciplined filters, builds a firm-year panel, fits transforms on training years only, and computes three risk-up geometries from the locked Phase-13 spec.</p>
+    </div>
+  </section>
+
+  <main>
+    <h2>1. Data sources</h2>
+    <p>
+      Every input comes from the U.S. Securities and Exchange
+      Commission&rsquo;s public EDGAR system. There are no
+      paywalled or proprietary feeds, no Compustat / WRDS, and
+      no third-party news.
+    </p>
+    <ul>
+      <li><strong>SEC ticker master</strong> — <code>data.sec.gov/files/company_tickers.json</code>: the public list of registrant CIKs and tickers.</li>
+      <li><strong>Submissions metadata</strong> — <code>data.sec.gov/submissions/CIK*.json</code>: per-registrant SIC code, fiscal year end, and filing list.</li>
+      <li><strong>Companyfacts (XBRL)</strong> — <code>data.sec.gov/api/xbrl/companyfacts/CIK*.json</code>: per-registrant XBRL fact tables.</li>
+      <li><strong>Chapter 11 / Item 1.03 distress anchor layer</strong> — 8-K filings whose structured <code>items</code> field contains <code>1.03</code> (Bankruptcy or Receivership), found via SEC EDGAR full-text search; 8-K body text fetched for scope classification.</li>
+    </ul>
+    <p class="muted">
+      Polite SEC pacing (default 0.18 s between requests, well
+      under SEC&rsquo;s 10/s cap), declared User-Agent, atomic
+      per-file writes. Provenance is recorded in the project
+      repository.
+    </p>
+
+    <h2>2. Universe construction</h2>
+    <h3>Non-financial operating-company filters</h3>
+    <ul>
+      <li>Exclude banks (SIC 6000–6299).</li>
+      <li>Exclude insurers (SIC 6300–6499).</li>
+      <li>Exclude SPACs / funds (SIC 6770 / 6726).</li>
+      <li>Exclude registrants with missing or non-numeric SIC.</li>
+    </ul>
+
+    <h3>XBRL coverage gates</h3>
+    <ul>
+      <li>Companyfacts JSON ≥ 500 KB (drops shells and very-small filers).</li>
+      <li>≥ 3 distinct annual <code>Assets</code> rows from <code>10-K</code> / <code>10-K/A</code> filings.</li>
+      <li>Per firm-year, at least 3 of 4 G primitives present (<code>g_coverage_gate ≥ 0.75</code>).</li>
+    </ul>
+
+    <h3>Train / test split</h3>
+    <ul>
+      <li>Train years: FY ≤ 2018.</li>
+      <li>Test years: FY 2019 – FY 2025.</li>
+      <li>The split rule has been preserved unchanged from Phase 15b through Phase 19 so the comparison chain is valid.</li>
+    </ul>
+
+    <p>
+      After all four gates, the locked Phase-18 panel admits
+      <strong>3,412 distinct CIKs</strong>; the post-coverage-gate
+      panel is <strong>36,041 firm-year rows</strong>.
+    </p>
+
+    <h2>3. G and A in corporate filings</h2>
+    <p>
+      The A/G framework separates two layers of a firm&rsquo;s
+      financial state:
+    </p>
+    <h3>G primitives — structural condition (&ldquo;ground&rdquo;)</h3>
+    <ul>
+      <li><strong>Current ratio</strong> (<code>g1_current_ratio</code>) — current assets ÷ current liabilities.</li>
+      <li><strong>Interest coverage</strong> (<code>g2_interest_coverage</code>) — operating income ÷ interest expense.</li>
+      <li><strong>Balance-sheet cushion</strong> (<code>g3_bs_cushion</code>) — cash and equity buffer relative to liabilities.</li>
+      <li><strong>Operating cash flow / assets</strong> (<code>g4_ocf_assets</code>).</li>
+    </ul>
+    <h3>A primitives — operating / performed appearance</h3>
+    <ul>
+      <li><strong>Return on assets</strong> (<code>a1_roa</code>).</li>
+      <li><strong>Gross margin</strong> (<code>a2_gross_margin</code>).</li>
+      <li><strong>Year-over-year revenue growth</strong> (<code>a3_rev_growth</code>).</li>
+    </ul>
+    <p>
+      G is the structural ground; A is the operating surface.
+      The Phase-13 doctrine is that distress regimes can be
+      separated by how G and A move together (joint collapse) or
+      apart (divergence / masking).
+    </p>
+    <p>
+      Corporate uses <strong>state-vector geometry</strong>, not
+      the banking branch&rsquo;s MHI dashboard doctrine. The
+      geometries below are operations on standardized G and A
+      aggregates, not on a single composite scalar.
+    </p>
+
+    <h3>Transforms (train-only fit)</h3>
+    <ul>
+      <li>Winsorize each primitive at the 5th / 95th percentile, fit on train years only.</li>
+      <li>Robust z-standardize: <code>(x − train median) / (1.4826 × train MAD)</code>.</li>
+      <li>Apply fitted transforms to test rows. A pre-execution assertion enforces zero index overlap between train and test.</li>
+    </ul>
+
+    <h2>4. Geometry definitions</h2>
+    <p>Three risk-up geometries are computed at λ = 0 (the
+      Phase-13 / Phase-15 corporate primary):</p>
+
+    <h3>Structural distress</h3>
+    <p>
+      <strong>Plain language:</strong> &ldquo;The firm&rsquo;s
+      structural balance-sheet ground is weak.&rdquo; A higher
+      score means weaker G.
+    </p>
+    <p><strong>Formula:</strong> <code>structural_distress = −G_score</code>
+      (the G aggregate, oriented so higher = more distress).</p>
+
+    <h3>Joint-collapse severity</h3>
+    <p>
+      <strong>Plain language:</strong> &ldquo;Both the structural
+      ground and the operating surface are weak together.&rdquo;
+      A higher score means joint collapse and is informative for
+      near-petition severity, not broad screening.
+    </p>
+    <p><strong>Formula:</strong> <code>co_collapse = −(G_score + A_score)</code>.</p>
+
+    <h3>Divergence / masking</h3>
+    <p>
+      <strong>Plain language:</strong> &ldquo;The operating
+      surface looks healthy while the structural ground is
+      weak.&rdquo; A higher score means more divergence between
+      A and G. This is a <strong>diagnostic</strong>, not a
+      Ch.11 screen.
+    </p>
+    <p><strong>Formula:</strong> <code>neg_R = A_score − G_score</code> (= the
+      canonical R viewed risk-up).</p>
+
+    <p class="muted">
+      A diagnostic <code>weakest_channel_fragility</code>
+      (binding-constraint indicator) is also computed but is
+      retained as descriptive only — its persistence-smoothed
+      validation is deferred to a future phase.
+    </p>
+
+    <h2>5. Why corporate differs from banking</h2>
+    <ul>
+      <li><strong>Banking has standardized regulatory call reports</strong> (FDIC / Federal Reserve quarterly), with a long failure history. Bank-failure anchors are clean and exhaustive.</li>
+      <li><strong>Corporate SEC / XBRL data is messier.</strong> Tag heterogeneity, restatements, late filings, and small-cap shells all add noise.</li>
+      <li><strong>Corporate Ch.11 is a low-base-rate event</strong>, on the order of 0.5 – 1.0% per year for the eligible public-company universe.</li>
+      <li><strong>Corporate sector heterogeneity is large.</strong> Manufacturing, Wholesale/Retail, and Services have different distress patterns and disclosure conventions.</li>
+      <li><strong>Anchor coverage is incomplete.</strong> Corporate uses Item 1.03 8-Ks only — missing some Chapter-7 paths and bankruptcy events filed under Items 5.02 / 8.01 attachments.</li>
+      <li><strong>Banking remains the project&rsquo;s flagship.</strong> Corporate is a domain-specific A/G transfer attempt, weaker than banking.</li>
+    </ul>
+
+    <h2>6. What was not done</h2>
+    <div class="callout">
+      <ul style="margin:0;" class="tight-list">
+        <li>No live company ranking is published.</li>
+        <li>No production scoring service is exposed.</li>
+        <li>No investment / credit decision system is offered.</li>
+        <li>No threshold tuning on the test fold (z = 0 is fixed).</li>
+        <li>No new geometry beyond the Phase-13 spec.</li>
+      </ul>
+    </div>
+
+    <p class="muted small">
+      The full reproducibility runbook lives inside the project
+      repository (not duplicated here). Independent reproduction
+      would require re-fetching from the public SEC EDGAR
+      endpoints; raw JSONs are not distributed from this site.
+    </p>
+  </main>
+
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <div>
+        <strong>Corporate A/G Research Extension</strong><br>
+        Built on public SEC EDGAR data.<br>
+        Locked Phase 19 freeze, 2026-04-26.
+      </div>
+      <div>
+        <ul>
+          <li><a href="evidence.html">Source documents</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+          <li><a href="commercial-use.html">Commercial use &amp; contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

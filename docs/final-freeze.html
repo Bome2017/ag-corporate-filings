@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Plain-language final lock document for the Corporate A/G Research Extension. What it is, what it is not, geometry roles, and the operator's claim discipline.">
+  <title>Final Freeze Note — Corporate A/G Research Extension</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="site-head-inner">
+      <span class="brand"><a href="../index.html">Corporate A/G Research Extension</a></span>
+      <span class="brand-sub">SEC public-company structural distress study</span>
+    </div>
+  </header>
+  <nav class="site-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="../index.html">Overview</a>
+      <a href="../methodology.html">Methodology</a>
+      <a href="../validation.html">Validation</a>
+      <a href="../evidence.html" class="current">Evidence</a>
+      <a href="../limitations.html">Limitations</a>
+      <a href="../commercial-use.html">Commercial Use</a>
+    </div>
+  </nav>
+
+  <section class="page-head">
+    <div class="page-head-inner">
+      <p class="page-head-eyebrow">Document &middot; Final Freeze</p>
+      <h1>Final Freeze Note</h1>
+      <p class="lead">Plain-language final lock document for the corporate branch. If you read only one document, read this one.</p>
+    </div>
+  </section>
+
+  <main>
+    <section class="doc-summary">
+      <h2>Summary</h2>
+      <p>
+        The Corporate A/G Research Extension is a research-grade
+        domain transfer of the A/G framework from its hardened
+        banking branch to public SEC company filings. It studies
+        structural distress, joint-collapse severity, and
+        divergence / masking regimes among eligible non-financial
+        operating companies. After a five-cohort validation
+        chain (Phases 15b → 16 → 17 → 18) and a five-track
+        Phase-19 hardening round, the corporate branch is
+        <strong>locked</strong> as a research artifact.
+      </p>
+    </section>
+
+    <h2>What it is</h2>
+    <ul>
+      <li>A reproducible firm-year panel built from public SEC EDGAR data only.</li>
+      <li>Per-firm-year scores for three risk-up geometries computed from a locked Phase-13 spec.</li>
+      <li>An evidence chain from raw data through validation metrics, with documented attenuation as the cohort moves from enriched to realistic.</li>
+      <li>An honest record of where the signal survives and where it is matched or beaten by simple primitives.</li>
+    </ul>
+
+    <h2>What it is not</h2>
+    <div class="callout forbid">
+      <ul style="margin:0;" class="tight-list">
+        <li>Not a bankruptcy prediction product.</li>
+        <li>Not a credit rating.</li>
+        <li>Not investment advice.</li>
+        <li>Not a production model, regulatory-grade screen, or automated decision system.</li>
+        <li>Not a replacement for credit analysis.</li>
+        <li>Not equivalent to the project&rsquo;s banking branch.</li>
+      </ul>
+    </div>
+
+    <h2>Main result</h2>
+    <p>
+      Phase-18 full-population pooled metrics on the FY 2019 –
+      FY 2025 test fold (19,410 rows; 231 strict positives;
+      base rate 1.19%):
+    </p>
+    <ul>
+      <li><strong>Structural distress</strong> AUROC 0.711 strict / 0.683 anchored — the strongest A/G composite screen.</li>
+      <li><strong>Joint-collapse severity</strong> AUROC 0.677 / 0.642 — near-petition severity geometry.</li>
+      <li><strong>Divergence / masking</strong> AUROC 0.489 / 0.510 — chance for broad Chapter 11 / Item 1.03 distress screening; retained for the divergence regime.</li>
+    </ul>
+    <p>
+      Phase-19 baseline comparison: two single primitives —
+      operating cash flow / assets and interest coverage —
+      slightly outperform the composite on AUROC (0.736 and
+      0.726 vs 0.711). The composite&rsquo;s value is robustness
+      and regime separation, not maximum raw discrimination.
+    </p>
+
+    <h2>Geometry roles</h2>
+    <ul>
+      <li><strong>Structural distress</strong> — primary broad screen.</li>
+      <li><strong>Joint-collapse severity</strong> — near-petition severity / joint deterioration geometry.</li>
+      <li><strong>Divergence / masking</strong> — diagnostic for the high-A, low-G regime; first internal evidence in Phase 19; not a Ch.11 screen.</li>
+    </ul>
+
+    <h2>How it differs from banking</h2>
+    <ul>
+      <li>Banking has standardized regulatory call reports; corporate SEC / XBRL is messier.</li>
+      <li>Corporate Ch.11 is low base rate (~ 0.5 – 1.0% per year).</li>
+      <li>Corporate uses state-vector geometry, not banking&rsquo;s MHI dashboard doctrine.</li>
+      <li>Anchor coverage is incomplete (Item 1.03 8-Ks only).</li>
+      <li>Banking remains the project&rsquo;s flagship; corporate is weaker.</li>
+    </ul>
+
+    <h2>Allowed claims</h2>
+    <ul class="tight-list">
+      <li>"Research-grade preliminary full-population screening evidence."</li>
+      <li>"Eligible SEC non-financial operating-company universe under project filters."</li>
+      <li>"Ranked monitoring / triage primitive."</li>
+      <li>"Domain-specific A/G transfer."</li>
+      <li>"Weaker than the banking branch."</li>
+      <li>"Not a bankruptcy prediction product."</li>
+      <li>"Canonical R retained for divergence / masking; first internal evidence; external validation pending."</li>
+    </ul>
+
+    <h2>Forbidden claims</h2>
+    <div class="callout forbid">
+      <ul style="margin:0;" class="tight-list">
+        <li>"Predicts bankruptcy."</li>
+        <li>"Validated commercial bankruptcy predictor."</li>
+        <li>"Production model" / "regulatory-grade."</li>
+        <li>"Replaces credit analysis."</li>
+        <li>"Investment advice" / "credit rating."</li>
+        <li>"Top bankruptcy risks" / "highest-risk companies" / "likely to fail."</li>
+        <li>"Works as well as banking."</li>
+      </ul>
+    </div>
+
+    <h2>Final classification</h2>
+    <div class="callout accent">
+      <p style="margin:0;">
+        Corporate branch status:
+        <strong>LOCKED / research-grade extension / not production /
+        weaker than banking / worth preserving.</strong>
+      </p>
+    </div>
+
+    <div class="source-basis">
+      <strong>Source basis:</strong> this is a public summary of
+      <code>CORPORATE_FINAL_FREEZE_NOTE.md</code> in the project
+      repository. The full text records allowed / forbidden
+      wording in detail and cites the underlying phase notes.
+    </div>
+
+    <p class="small muted">Back to <a href="../evidence.html">Evidence</a> &middot; <a href="index.html">Documents index</a>.</p>
+  </main>
+
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <div><strong>Corporate A/G Research Extension</strong><br>Built on public SEC EDGAR data.<br>Locked Phase 19 freeze, 2026-04-26.</div>
+      <div><ul><li><a href="../methodology.html">Methodology</a></li><li><a href="../validation.html">Validation</a></li><li><a href="../limitations.html">Limitations</a></li></ul></div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,81 @@
+{
+  "phase": 19,
+  "phase_name": "Corporate hardening + folder cleanup + final freeze",
+  "freeze_date": "2026-04-26",
+  "process_label": "PARTIAL: Phase 19 completed but baseline/sector results weakened the claim",
+  "scientific_verdict": "corporate signal survives but is weaker than simple baselines",
+  "final_classification": "LOCKED / research-grade extension / not production / weaker than banking / worth preserving",
+  "anchor_refresh": {
+    "window": "2026-01-01 to 2026-04-26",
+    "n_efts_candidates": 30,
+    "n_high_confidence_accepted": 6,
+    "n_already_in_phase18_panel": 5,
+    "n_new_cik_not_in_panel": 1,
+    "out_of_time_n_pre_petition_rows": 22,
+    "structural_distress_mean_percentile": "56–62 (above 50th-percentile chance line; too small N for statistical claim)",
+    "verdict": "directional consistency with Phase 18; descriptive only; no statistical claim",
+    "source_document": "docs/anchor-refresh.html"
+  },
+  "sector_stratification": {
+    "stratum": "SIC division (first SIC digit)",
+    "reliable_cells": [
+      {"division": 2, "name": "Manufacturing (food/textiles/chem/petroleum)", "n_pos": 85, "structural_distress_auroc": 0.729},
+      {"division": 5, "name": "Wholesale + Retail Trade",                     "n_pos": 30, "structural_distress_auroc": 0.742},
+      {"division": 3, "name": "Manufacturing (durables/electronics)",         "n_pos": 53, "structural_distress_auroc": 0.639}
+    ],
+    "weak_cell": "Manufacturing-3 (durables/electronics)",
+    "verdict": "broadly distributed across reliable cells; pooled AUROC sits in mid-range; signal is not concentrated in a single sector but Manufacturing-3 is meaningfully weaker than the pooled headline",
+    "source_document": "docs/sector-analysis.html"
+  },
+  "calibration": {
+    "geometry_public_label": "Structural distress",
+    "geometry_internal_metric": "structural_distress_lam0_0",
+    "label_track": "direct_high_medium",
+    "bands": [
+      {"name": "Normal / background",         "pct_lo":  0, "pct_hi": 60, "n_in_band": 11646, "n_pos": 49, "event_rate": 0.0042, "lift": 0.35,  "recall": 0.21},
+      {"name": "Elevated",                    "pct_lo": 60, "pct_hi": 80, "n_in_band":  3882, "n_pos": 76, "event_rate": 0.0196, "lift": 1.65,  "recall": 0.33},
+      {"name": "Watch",                       "pct_lo": 80, "pct_hi": 95, "n_in_band":  2911, "n_pos": 90, "event_rate": 0.0309, "lift": 2.60,  "recall": 0.39},
+      {"name": "High structural concern",     "pct_lo": 95, "pct_hi": 99, "n_in_band":   745, "n_pos": 15, "event_rate": 0.0201, "lift": 1.69,  "recall": 0.065},
+      {"name": "Critical / inspect manually", "pct_lo": 99, "pct_hi":100, "n_in_band":   226, "n_pos":  1, "event_rate": 0.0044, "lift": 0.37,  "recall": 0.004}
+    ],
+    "headline_finding": "Watch band (80–95) is the most informative monitoring tier (lift 2.60×, recall 39%); Critical band (top 1%) shows tail dropoff (lift 0.37×) and is noise-prone — NOT highest-priority.",
+    "source_document": "docs/calibration-policy.html"
+  },
+  "baseline_comparison": {
+    "label_track": "direct_high_medium",
+    "ranked_by_auroc": [
+      {"public_label": "Operating cash flow / assets (risk-up)", "internal": "neg_g4_ocf_assets_z",        "kind": "baseline",          "auroc": 0.736, "lift_top10pct": 2.34},
+      {"public_label": "Interest coverage (risk-up)",            "internal": "neg_g2_interest_coverage_z", "kind": "baseline",          "auroc": 0.726, "lift_top10pct": 1.93},
+      {"public_label": "Altman-like proxy (Phase-19 weighted)",  "internal": "altman_like_proxy_phase19",  "kind": "baseline (proxy)",  "auroc": 0.714, "lift_top10pct": 1.94},
+      {"public_label": "Return on assets (risk-up)",             "internal": "neg_a1_roa_z",               "kind": "baseline",          "auroc": 0.713, "lift_top10pct": 1.82},
+      {"public_label": "Structural distress (composite)",        "internal": "structural_distress_lam0_0", "kind": "candidate",         "auroc": 0.711, "lift_top10pct": 2.21},
+      {"public_label": "G-aggregate mean",                       "internal": "mean_neg_g_z",               "kind": "baseline",          "auroc": 0.711, "lift_top10pct": 2.21},
+      {"public_label": "G+A aggregate mean",                     "internal": "mean_neg_ga_z",              "kind": "baseline",          "auroc": 0.688, "lift_top10pct": 2.08},
+      {"public_label": "Joint-collapse severity (composite)",    "internal": "co_collapse_lam0_0",         "kind": "candidate",         "auroc": 0.677, "lift_top10pct": 1.90}
+    ],
+    "uncomfortable_finding": "Two single-primitive baselines (operating cash flow / assets, interest coverage) slightly outperform the composite on AUROC. The composite's value is robustness/architecture, not raw discrimination.",
+    "implication": "The corporate A/G composite is informationally consistent with the strongest single G primitives; its added value is graceful degradation when one primitive is missing, not maximum AUROC.",
+    "source_document": "docs/baseline-comparison.html"
+  },
+  "divergence_anchor": {
+    "anchor_kind": "internal future-state (G drops by ≥ 1 z over 1–2 yrs OR firm enters pre-petition)",
+    "anchor_external": false,
+    "divergence_state_definition": "A_score(t) > 0 AND G_score(t) < 0",
+    "n_divergence_state_rows": 2573,
+    "n_positives": 280,
+    "results": {
+      "structural_distress_lam0_0": {"divergence_state_auroc": 0.666, "all_comers_auroc": 0.465},
+      "co_collapse_lam0_0":         {"divergence_state_auroc": 0.468, "all_comers_auroc": 0.552},
+      "neg_R_lam0_0":               {"divergence_state_auroc": 0.705, "all_comers_auroc": 0.342}
+    },
+    "headline_finding": "Within the divergence-state cohort, the divergence/masking geometry AUROC = 0.705 beats structural distress (0.666) and joint-collapse severity (0.468 chance). The 36-pp swing between cohorts is first internal evidence supporting canonical R for its intended divergence/masking regime.",
+    "caveat": "Internal future-state anchor; NOT external divergence-event anchor. External validation deferred.",
+    "source_document": "docs/divergence-anchor.html"
+  },
+  "lock_check": {
+    "n_baseline_artifacts": 20,
+    "n_byte_identical": 20,
+    "all_phase12_13_15_16_17_outputs_unchanged": true
+  },
+  "next_recommended_focus": "Higher-ed Task #15 (A-layer + multi-year panel + closure/HCM anchor join). Corporate Phase 20 only if reviewer/audience requires; highest-marginal-value candidate is external divergence-anchor validation."
+}

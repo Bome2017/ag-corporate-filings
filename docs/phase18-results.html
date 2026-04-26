@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Phase 18 full-population validation results for the Corporate A/G Research Extension. Pooled metrics, per-year breakdown, and the comparison chain.">
+  <title>Phase 18 Full-Population Results — Corporate A/G Research Extension</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="site-head-inner">
+      <span class="brand"><a href="../index.html">Corporate A/G Research Extension</a></span>
+      <span class="brand-sub">SEC public-company structural distress study</span>
+    </div>
+  </header>
+  <nav class="site-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="../index.html">Overview</a>
+      <a href="../methodology.html">Methodology</a>
+      <a href="../validation.html">Validation</a>
+      <a href="../evidence.html" class="current">Evidence</a>
+      <a href="../limitations.html">Limitations</a>
+      <a href="../commercial-use.html">Commercial Use</a>
+    </div>
+  </nav>
+
+  <section class="page-head">
+    <div class="page-head-inner">
+      <p class="page-head-eyebrow">Document &middot; Phase 18 Results</p>
+      <h1>Phase 18 Full-Population Results</h1>
+      <p class="lead">The locked Phase-18 result on the full eligible-universe panel: 3,412 admitted CIKs, 36,041 post-gate rows, 19,410 test rows. Structural distress is the strongest A/G composite screen.</p>
+    </div>
+  </section>
+
+  <main>
+    <section class="doc-summary">
+      <h2>Summary</h2>
+      <p>
+        Phase 18 ran the locked Phase-15a transforms and the
+        Phase-13 geometries on the eligible SEC non-financial
+        operating-company universe under project filters
+        (post Phase-12 SIC + facts-size + 3-Assets gates).
+        The signal survives at AUROC ≈ 0.71 strict / 0.68
+        anchored under the realistic 1 – 2% base rate.
+      </p>
+    </section>
+
+    <h2>Cohort and panel</h2>
+    <div class="metrics">
+      <dl>
+        <dt>Eligible candidate CIKs</dt><dd>7,515</dd>
+        <dt>Phase-15a CIKs included</dt><dd>243</dd>
+        <dt>Admitted (post Phase-12 gates)</dt><dd>3,412</dd>
+        <dt>Excluded</dt><dd>4,346</dd>
+        <dt>Panel rows</dt><dd>38,748</dd>
+        <dt>Post-coverage-gate rows</dt><dd>36,041</dd>
+        <dt>Train rows (FY ≤ 2018)</dt><dd>16,631</dd>
+        <dt>Test rows (FY 2019 – 2025)</dt><dd>19,410</dd>
+        <dt>Strict positives</dt><dd>231</dd>
+        <dt>All-anchored positives</dt><dd>354</dd>
+      </dl>
+    </div>
+
+    <h2>Per-test-year base rates</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>FY</th><th class="num">Rows</th><th class="num">Strict positives</th><th class="num">Anchored positives</th><th class="num">Strict base rate</th><th class="num">Anchored base rate</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>2019</td><td class="num">2,604</td><td class="num">60</td><td class="num">97</td><td class="num">0.0230</td><td class="num">0.0373</td></tr>
+          <tr><td>2020</td><td class="num">2,770</td><td class="num">53</td><td class="num">81</td><td class="num">0.0191</td><td class="num">0.0292</td></tr>
+          <tr><td>2021</td><td class="num">3,078</td><td class="num">53</td><td class="num">78</td><td class="num">0.0172</td><td class="num">0.0253</td></tr>
+          <tr><td>2022</td><td class="num">3,173</td><td class="num">46</td><td class="num">69</td><td class="num">0.0145</td><td class="num">0.0217</td></tr>
+          <tr><td>2023</td><td class="num">3,185</td><td class="num">21</td><td class="num">31</td><td class="num">0.0066</td><td class="num">0.0097</td></tr>
+          <tr><td>2024</td><td class="num">3,145</td><td class="num">5</td><td class="num">7</td><td class="num">0.0016</td><td class="num">0.0022</td></tr>
+          <tr><td>2025</td><td class="num">3,014</td><td class="num">0</td><td class="num">0</td><td class="num">0.0000</td><td class="num">0.0000</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Pooled validation (strict label)</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Geometry</th><th class="num">AUROC</th><th>95% CI</th><th class="num">AP</th><th class="num">Lift @ 10%</th><th class="num">Lift @ 1%</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Structural distress</strong></td><td class="num"><strong>0.711</strong></td><td>[0.660, 0.753]</td><td class="num">0.023</td><td class="num">2.21×</td><td class="num">0.43×</td></tr>
+          <tr><td>Joint-collapse severity</td><td class="num">0.677</td><td>[0.631, 0.726]</td><td class="num">0.021</td><td class="num">1.90×</td><td class="num">0.00×</td></tr>
+          <tr><td>Divergence / masking</td><td class="num">0.489</td><td>[0.419, 0.551]</td><td class="num">0.016</td><td class="num">2.03×</td><td class="num">3.03×</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Pooled validation (all-anchored label)</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Geometry</th><th class="num">AUROC</th><th>95% CI</th><th class="num">AP</th><th class="num">Lift @ 10%</th><th class="num">Lift @ 1%</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Structural distress</strong></td><td class="num"><strong>0.683</strong></td><td>[0.639, 0.719]</td><td class="num">0.030</td><td class="num">1.81×</td><td class="num">0.85×</td></tr>
+          <tr><td>Joint-collapse severity</td><td class="num">0.642</td><td>[0.602, 0.683]</td><td class="num">0.027</td><td class="num">1.55×</td><td class="num">0.28×</td></tr>
+          <tr><td>Divergence / masking</td><td class="num">0.510</td><td>[0.457, 0.554]</td><td class="num">0.024</td><td class="num">2.03×</td><td class="num">2.54×</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Per-year structural-distress AUROC (strict label)</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>FY</th><th class="num">n_rows</th><th class="num">n_pos</th><th class="num">AUROC</th><th class="num">Lift @ 10%</th></tr></thead>
+        <tbody>
+          <tr><td>2019</td><td class="num">2,402</td><td class="num">58</td><td class="num">0.668</td><td class="num">2.24×</td></tr>
+          <tr><td>2020</td><td class="num">2,545</td><td class="num">51</td><td class="num">0.760</td><td class="num">2.16×</td></tr>
+          <tr><td>2021</td><td class="num">2,852</td><td class="num">51</td><td class="num">0.725</td><td class="num">1.57×</td></tr>
+          <tr><td>2022</td><td class="num">2,963</td><td class="num">45</td><td class="num">0.698</td><td class="num">1.78×</td></tr>
+          <tr><td>2023</td><td class="num">2,972</td><td class="num">21</td><td class="num">0.708</td><td class="num">1.91×</td></tr>
+          <tr><td>2024</td><td class="num">2,897</td><td class="num">5</td><td class="num">0.719</td><td class="num">2.00×</td></tr>
+          <tr><td>2025</td><td class="num">2,779</td><td class="num">0</td><td class="num">n/a</td><td class="num">n/a</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted">Per-year AUROC stable across FY 2019 – 2024 (range 0.67 – 0.76). FY 2025 has zero positives in the panel because the Item 1.03 anchor table thins past 2024.</p>
+
+    <h2>Comparison chain</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Phase</th><th>Cohort</th><th>Test base rate</th><th class="num">Structural AUROC</th><th class="num">Joint-collapse AUROC</th><th class="num">Divergence AUROC</th></tr></thead>
+        <tbody>
+          <tr><td>15b</td><td>Enriched held-out</td><td>0.71</td><td class="num">0.72</td><td class="num">0.74</td><td class="num">0.39</td></tr>
+          <tr><td>16</td><td>Hardening / base-rate</td><td>0.19</td><td class="num">0.71</td><td class="num">0.66</td><td class="num">0.49</td></tr>
+          <tr><td>17</td><td>Population sample</td><td>0.07 / 0.11</td><td class="num">0.78 / 0.76</td><td class="num">0.76 / 0.73</td><td class="num">0.45 / 0.47</td></tr>
+          <tr><td><strong>18</strong></td><td><strong>Full population</strong></td><td>0.012 / 0.018</td><td class="num"><strong>0.711 / 0.683</strong></td><td class="num">0.677 / 0.642</td><td class="num">0.489 / 0.510</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="source-basis">
+      <strong>Source basis:</strong> this is a public summary of
+      <code>CORPORATE_PHASE18_FULL_POPULATION_RESULTS.md</code>
+      and the underlying validation CSVs in the project
+      repository. Numbers match the locked artifacts; CIs come
+      from a 500-resample CIK-cluster bootstrap with
+      <code>numpy.random.default_rng(20260424)</code>.
+    </div>
+
+    <p class="small muted">Back to <a href="../validation.html">Validation</a> &middot; <a href="../evidence.html">Evidence</a> &middot; <a href="index.html">Documents index</a>.</p>
+  </main>
+
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <div><strong>Corporate A/G Research Extension</strong><br>Built on public SEC EDGAR data.<br>Locked Phase 19 freeze, 2026-04-26.</div>
+      <div><ul><li><a href="../methodology.html">Methodology</a></li><li><a href="../limitations.html">Limitations</a></li><li><a href="../commercial-use.html">Commercial use &amp; contact</a></li></ul></div>
+    </div>
+  </footer>
+</body>
+</html>

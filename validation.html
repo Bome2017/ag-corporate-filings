@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Validation results for the Corporate A/G Research Extension — Phase 18 full-population pooled metrics, comparison chain across phases, baseline comparison, sector stratification, calibration policy, and the divergence-anchor study.">
+  <title>Validation — Corporate A/G Research Extension</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="site-head-inner">
+      <span class="brand"><a href="index.html">Corporate A/G Research Extension</a></span>
+      <span class="brand-sub">SEC public-company structural distress study</span>
+    </div>
+  </header>
+  <nav class="site-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="index.html">Overview</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="validation.html" class="current">Validation</a>
+      <a href="evidence.html">Evidence</a>
+      <a href="limitations.html">Limitations</a>
+      <a href="commercial-use.html">Commercial Use</a>
+    </div>
+  </nav>
+
+  <section class="page-head">
+    <div class="page-head-inner">
+      <p class="page-head-eyebrow">Validation</p>
+      <h1>Phase 18 full-population result, with Phase 19 hardening</h1>
+      <p class="lead">The signal survives full-population testing with documented attenuation. Structural distress is the strongest A/G composite screen; two simple primitives slightly outperform it on AUROC. The geometry roles separate broad screening from joint-collapse severity from divergence/masking.</p>
+    </div>
+  </section>
+
+  <main>
+    <h2>Validation summary</h2>
+    <div class="metric-grid">
+      <div class="metric-tile">
+        <div class="metric-label">Phase 18</div>
+        <div class="metric-value">Completed &amp; locked</div>
+        <div class="metric-sub">Full eligible-universe testing</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-label">Phase 19</div>
+        <div class="metric-value">Hardening completed</div>
+        <div class="metric-sub">Baseline comparison weakened the claim</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-label">Test rows</div>
+        <div class="metric-value">19,410</div>
+        <div class="metric-sub">FY 2019 – FY 2025</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-label">Strict positives</div>
+        <div class="metric-value">231</div>
+        <div class="metric-sub">Direct + high/medium-confidence anchors</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-label">All-anchored positives</div>
+        <div class="metric-value">354</div>
+        <div class="metric-sub">Every Phase-14 anchored CIK</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-label">Pooled base rate</div>
+        <div class="metric-value">~1.2% / 1.8%</div>
+        <div class="metric-sub">Strict / anchored</div>
+      </div>
+    </div>
+
+    <h2>Phase 18 full-population pooled metrics</h2>
+    <p>
+      Threshold-fixed at z = 0.0 (no test-fold tuning).
+      500-resample CIK-cluster bootstrap CIs.
+    </p>
+
+    <h3>Strict label (direct + high/medium-confidence anchors)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Geometry</th>
+            <th class="code">Internal metric</th>
+            <th class="num">AUROC</th>
+            <th>95% CI</th>
+            <th class="num">AP</th>
+            <th class="num">Lift @ 10%</th>
+            <th class="num">Lift @ 1%</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Structural distress</strong></td>
+            <td class="code">structural_distress_lam0_0</td>
+            <td class="num"><strong>0.711</strong></td>
+            <td>[0.660, 0.753]</td>
+            <td class="num">0.023</td>
+            <td class="num"><strong>2.21×</strong></td>
+            <td class="num">0.43×</td>
+          </tr>
+          <tr>
+            <td>Joint-collapse severity</td>
+            <td class="code">co_collapse_lam0_0</td>
+            <td class="num">0.677</td>
+            <td>[0.631, 0.726]</td>
+            <td class="num">0.021</td>
+            <td class="num">1.90×</td>
+            <td class="num">0.00×</td>
+          </tr>
+          <tr>
+            <td>Divergence / masking</td>
+            <td class="code">neg_R_lam0_0</td>
+            <td class="num">0.489</td>
+            <td>[0.419, 0.551]</td>
+            <td class="num">0.016</td>
+            <td class="num">2.03×</td>
+            <td class="num">3.03×</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>All-anchored label (every Phase-14 anchored CIK)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Geometry</th>
+            <th class="code">Internal metric</th>
+            <th class="num">AUROC</th>
+            <th>95% CI</th>
+            <th class="num">AP</th>
+            <th class="num">Lift @ 10%</th>
+            <th class="num">Lift @ 1%</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Structural distress</strong></td>
+            <td class="code">structural_distress_lam0_0</td>
+            <td class="num"><strong>0.683</strong></td>
+            <td>[0.639, 0.719]</td>
+            <td class="num">0.030</td>
+            <td class="num"><strong>1.81×</strong></td>
+            <td class="num">0.85×</td>
+          </tr>
+          <tr>
+            <td>Joint-collapse severity</td>
+            <td class="code">co_collapse_lam0_0</td>
+            <td class="num">0.642</td>
+            <td>[0.602, 0.683]</td>
+            <td class="num">0.027</td>
+            <td class="num">1.55×</td>
+            <td class="num">0.28×</td>
+          </tr>
+          <tr>
+            <td>Divergence / masking</td>
+            <td class="code">neg_R_lam0_0</td>
+            <td class="num">0.510</td>
+            <td>[0.457, 0.554]</td>
+            <td class="num">0.024</td>
+            <td class="num">2.03×</td>
+            <td class="num">2.54×</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="muted small">
+      The candidate geometries&rsquo; CIs cleanly exclude the
+      0.5 chance line on the lower side. <code>neg_R</code>
+      brackets 0.5 — chance, as expected for a divergence /
+      masking diagnostic on a broad Chapter 11 / Item 1.03
+      distress screen.
+    </p>
+
+    <h2>Phase chain</h2>
+    <p>
+      The corporate signal has been measured across five
+      successive cohort designs. The story is one of
+      <strong>real but attenuating</strong> discrimination as
+      the cohort moves from enriched (engineered) to realistic
+      (full population).
+    </p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>Cohort</th>
+            <th>Test base rate</th>
+            <th class="num">Structural AUROC</th>
+            <th class="num">Joint-collapse AUROC</th>
+            <th class="num">Divergence AUROC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>15b</td>
+            <td>Enriched held-out</td>
+            <td>0.71</td>
+            <td class="num">0.72</td>
+            <td class="num">0.74</td>
+            <td class="num">0.39 (worse than chance)</td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>Hardening / base-rate</td>
+            <td>0.19</td>
+            <td class="num">0.71</td>
+            <td class="num">0.66</td>
+            <td class="num">0.49</td>
+          </tr>
+          <tr>
+            <td>17</td>
+            <td>Population sample (708 CIKs)</td>
+            <td>0.07 / 0.11</td>
+            <td class="num">0.78 / 0.76</td>
+            <td class="num">0.76 / 0.73</td>
+            <td class="num">0.45 / 0.47</td>
+          </tr>
+          <tr>
+            <td><strong>18</strong></td>
+            <td><strong>Full population (3,412 CIKs)</strong></td>
+            <td>0.012 / 0.018</td>
+            <td class="num"><strong>0.711 / 0.683</strong></td>
+            <td class="num">0.677 / 0.642</td>
+            <td class="num">0.489 / 0.510</td>
+          </tr>
+          <tr>
+            <td>19</td>
+            <td>Hardening / freeze</td>
+            <td>—</td>
+            <td class="num">(unchanged)</td>
+            <td class="num">(unchanged)</td>
+            <td class="num">(unchanged)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted small">
+      Slashes separate strict / all-anchored where both are
+      reported. The geometry ordering (structural ≥
+      joint-collapse > divergence) is preserved at every cell.
+      Phase 18 is the locked final result.
+    </p>
+
+    <h2>Baseline comparison (Phase 19)</h2>
+    <div class="callout uncomf">
+      <p>
+        Two simple primitives — <code>neg_g4_ocf_assets_z</code>
+        and <code>neg_g2_interest_coverage_z</code> — slightly
+        outperform <code>structural_distress_lam0_0</code> on AUROC.
+        This weakens any claim that the A/G composite is the
+        strongest raw discriminator, but it does not erase the
+        structural / regime interpretation value.
+      </p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Score</th>
+            <th>Kind</th>
+            <th class="num">AUROC (strict)</th>
+            <th class="num">Lift @ 10%</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Operating cash flow / assets (risk-up)</td><td>baseline</td><td class="num">0.736</td><td class="num">2.34×</td></tr>
+          <tr><td>Interest coverage (risk-up)</td><td>baseline</td><td class="num">0.726</td><td class="num">1.93×</td></tr>
+          <tr><td>Altman-like proxy (Phase-19 weighted; not actual Altman Z)</td><td>baseline (proxy)</td><td class="num">0.714</td><td class="num">1.94×</td></tr>
+          <tr><td>Return on assets (risk-up)</td><td>baseline</td><td class="num">0.713</td><td class="num">1.82×</td></tr>
+          <tr><td><strong>Structural distress (composite)</strong></td><td><strong>candidate</strong></td><td class="num"><strong>0.711</strong></td><td class="num">2.21×</td></tr>
+          <tr><td>Joint-collapse severity (composite)</td><td>candidate</td><td class="num">0.677</td><td class="num">1.90×</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted">
+      The composite&rsquo;s value is <strong>robustness</strong>
+      (graceful degradation when a primitive is missing) and
+      <strong>regime separation</strong>, not maximum raw
+      discrimination. Full table:
+      <a href="docs/baseline-comparison.html">Baseline Comparison</a>.
+    </p>
+
+    <h2>Sector stratification (Phase 19)</h2>
+    <p>
+      Pooled AUROC of 0.711 is broadly distributed across
+      reliable SIC divisions (n_pos ≥ 20 strict positives in
+      cell):
+    </p>
+    <ul>
+      <li><strong>Wholesale + Retail Trade</strong> — AUROC <strong>0.742</strong>, n_pos = 30. Strongest reliable cell.</li>
+      <li><strong>Manufacturing (food / textiles / chem / petroleum)</strong> — AUROC <strong>0.729</strong>, n_pos = 85. Largest contributor.</li>
+      <li><strong>Manufacturing (durables / electronics)</strong> — AUROC <strong>0.639</strong>, n_pos = 53. The weak cell.</li>
+    </ul>
+    <p>
+      Smaller cells (Services, Health/Education, Mining, Transport,
+      Agriculture, Finance/RE residual) have fewer than 20 strict
+      positives and are flagged DESCRIPTIVE_ONLY or NO_STRONG_CLAIM.
+      Their flashy AUROCs (e.g., Finance/RE residual 0.92 on 6
+      positives) should not be over-interpreted. Full table:
+      <a href="docs/sector-analysis.html">Sector Analysis</a>.
+    </p>
+
+    <h2>Calibration / monitoring bands (Phase 19)</h2>
+    <p>
+      Predeclared (not tuned) quantile bands on the test-fold
+      score distribution for <strong>structural distress</strong>:
+    </p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Band</th>
+            <th>Percentile</th>
+            <th class="num">n in band</th>
+            <th class="num">Pos in band</th>
+            <th class="num">Event rate</th>
+            <th class="num">Lift</th>
+            <th class="num">Recall captured</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Normal / background</td><td>0–60</td><td class="num">11,646</td><td class="num">49</td><td class="num">0.42%</td><td class="num">0.35</td><td class="num">21%</td></tr>
+          <tr><td>Elevated</td><td>60–80</td><td class="num">3,882</td><td class="num">76</td><td class="num">1.96%</td><td class="num">1.65</td><td class="num">33%</td></tr>
+          <tr style="font-weight:600;"><td>Watch</td><td>80–95</td><td class="num">2,911</td><td class="num">90</td><td class="num">3.09%</td><td class="num">2.60</td><td class="num">39%</td></tr>
+          <tr><td>High structural concern</td><td>95–99</td><td class="num">745</td><td class="num">15</td><td class="num">2.01%</td><td class="num">1.69</td><td class="num">6.5%</td></tr>
+          <tr><td>Critical / inspect manually</td><td>99–100</td><td class="num">226</td><td class="num">1</td><td class="num">0.44%</td><td class="num">0.37</td><td class="num">0.4%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout warn">
+      <p>
+        <strong>Tail-dropoff notice.</strong> The Critical / top-1 %
+        band <em>does not</em> have the highest event rate. Its
+        lift is below 1.0 (worse than random for that slice).
+        Treat it as <strong>noise-prone</strong>, not as the
+        highest-priority flag. The most informative tier is the
+        <strong>Watch band (80–95th percentile)</strong> — 39 % of
+        strict positives captured by 15 % of the universe, lift 2.6×.
+      </p>
+    </div>
+    <p class="small muted">
+      These bands are <strong>research-grade triage primitives</strong>,
+      not automated decisions. Each company appearing in any
+      band requires manual inspection. Full policy:
+      <a href="docs/calibration-policy.html">Calibration Policy</a>.
+    </p>
+
+    <h2>Divergence-anchor study (Phase 19)</h2>
+    <p>
+      Inside the divergence-state cohort (firm-years where
+      A &gt; 0 and G &lt; 0 — the &ldquo;healthy-looking
+      earnings, weak balance-sheet ground&rdquo; pattern), the
+      divergence / masking geometry shows the best
+      discrimination of future structural deterioration:
+    </p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Geometry</th>
+            <th class="num">Divergence-state cohort AUROC</th>
+            <th class="num">All-comers cohort AUROC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Structural distress</td><td class="num">0.666</td><td class="num">0.465 (mean reversion)</td></tr>
+          <tr><td>Joint-collapse severity</td><td class="num">0.468 (chance)</td><td class="num">0.552</td></tr>
+          <tr><td><strong>Divergence / masking</strong></td><td class="num"><strong>0.705</strong></td><td class="num">0.342 (mean reversion)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      The 36-percentage-point AUROC swing for the divergence
+      geometry between cohorts (0.342 broad → 0.705 inside
+      divergence-state) is <strong>first internal evidence</strong>
+      that the canonical R / divergence geometry behaves as the
+      Phase-13 doctrine predicted — useful for the divergence /
+      masking regime, not for broad Ch.11 screening. This is an
+      <strong>internal future-state anchor</strong>, not an
+      external divergence-event anchor; external validation is
+      a future-phase candidate. Full study:
+      <a href="docs/divergence-anchor.html">Divergence-Anchor Study</a>.
+    </p>
+
+    <h2>Anchor refresh (Phase 19)</h2>
+    <p>
+      A bounded EDGAR full-text-search refresh (2026-01-01 →
+      2026-04-26) found <strong>6 new high-confidence Item-1.03
+      anchors</strong>; 5 of 6 are already in the Phase-18
+      panel. The descriptive out-of-time check (22 pre-petition
+      firm-year rows) is consistent with Phase-18 in direction
+      but is too small for a statistical claim. Full note:
+      <a href="docs/anchor-refresh.html">Anchor Refresh Note</a>.
+    </p>
+
+    <h2>Bottom line</h2>
+    <div class="callout accent">
+      <ul style="margin:0;">
+        <li>The full-population signal <strong>survives</strong> with documented attenuation.</li>
+        <li>Structural distress is the <strong>strongest A/G composite screen</strong>.</li>
+        <li>Two simple primitives slightly <strong>beat the composite on AUROC</strong>; the composite&rsquo;s value is robustness and regime separation, not maximum discrimination.</li>
+        <li>Canonical R / divergence is at chance for broad Ch.11 screening; first internal evidence supports it for the divergence / masking regime.</li>
+        <li>Corporate is <strong>legitimate but weaker than banking</strong>. The banking branch is the project&rsquo;s flagship.</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <div>
+        <strong>Corporate A/G Research Extension</strong><br>
+        Built on public SEC EDGAR data.<br>
+        Locked Phase 19 freeze, 2026-04-26.
+      </div>
+      <div>
+        <ul>
+          <li><a href="evidence.html">Source documents</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+          <li><a href="commercial-use.html">Commercial use &amp; contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Phase 19 out-of-time anchor refresh for the Corporate A/G Research Extension. Bounded EDGAR FTS refresh from 2026-01-01 onward; descriptive only at small N.">
+  <title>Anchor Refresh Note — Corporate A/G Research Extension</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="site-head-inner">
+      <span class="brand"><a href="../index.html">Corporate A/G Research Extension</a></span>
+      <span class="brand-sub">SEC public-company structural distress study</span>
+    </div>
+  </header>
+  <nav class="site-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="../index.html">Overview</a>
+      <a href="../methodology.html">Methodology</a>
+      <a href="../validation.html">Validation</a>
+      <a href="../evidence.html" class="current">Evidence</a>
+      <a href="../limitations.html">Limitations</a>
+      <a href="../commercial-use.html">Commercial Use</a>
+    </div>
+  </nav>
+
+  <section class="page-head">
+    <div class="page-head-inner">
+      <p class="page-head-eyebrow">Document &middot; Anchor Refresh</p>
+      <h1>Anchor Refresh Note</h1>
+      <p class="lead">A bounded out-of-time refresh of the Item 1.03 anchor table from 2026-01-01 through today, with a descriptive 22-row out-of-time check.</p>
+    </div>
+  </section>
+
+  <main>
+    <section class="doc-summary">
+      <h2>Summary</h2>
+      <p>
+        Phase 14 originally built the Item 1.03 anchor table
+        through end-of-2025 (latest <code>file_date</code>
+        2025-12-15). Phase 19 ran a bounded EDGAR full-text
+        search refresh from 2026-01-01 → 2026-04-26 to look
+        for new high-confidence Item 1.03 anchors and check
+        whether the Phase-18 finding survives an out-of-time
+        directional check.
+      </p>
+    </section>
+
+    <h2>Counts</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Stage</th><th class="num">n</th></tr></thead>
+        <tbody>
+          <tr><td>EFTS hits in refresh window</td><td class="num">30</td></tr>
+          <tr><td>Rejected for items field not containing "1.03"</td><td class="num">24</td></tr>
+          <tr><td><strong>Accepted high-confidence Item-1.03 anchors</strong></td><td class="num"><strong>6 rows / 6 distinct CIKs</strong></td></tr>
+          <tr><td>Of those, already in Phase-18 panel</td><td class="num">5</td></tr>
+          <tr><td>New CIK (not in Phase-18 panel)</td><td class="num">1</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Out-of-time descriptive check</h2>
+    <p>
+      For the 5 in-panel CIKs, we located their pre-petition
+      firm-year rows in the Phase-18 scored panel and recorded
+      where each row falls in the test-fold score distribution
+      for the candidate geometries. With N = 22 pre-petition
+      rows split across three lag classes (pre_1 / pre_2 /
+      pre_3_plus), no statistical CI is meaningful; this is a
+      descriptive directional check.
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Geometry</th><th>Lag class</th><th class="num">n</th><th class="num">Mean percentile</th><th class="num">Top-decile capture</th></tr></thead>
+        <tbody>
+          <tr><td>Structural distress</td><td>pre_1</td><td class="num">3</td><td class="num">61.2</td><td class="num">0/3</td></tr>
+          <tr><td>Structural distress</td><td>pre_2</td><td class="num">4</td><td class="num">56.3</td><td class="num">0/4</td></tr>
+          <tr><td>Structural distress</td><td>pre_3+</td><td class="num">15</td><td class="num">62.3</td><td class="num">1/15</td></tr>
+          <tr><td>Joint-collapse severity</td><td>pre_1</td><td class="num">3</td><td class="num">62.6</td><td class="num">0/3</td></tr>
+          <tr><td>Joint-collapse severity</td><td>pre_2</td><td class="num">4</td><td class="num">73.7</td><td class="num">0/4</td></tr>
+          <tr><td>Joint-collapse severity</td><td>pre_3+</td><td class="num">15</td><td class="num">56.4</td><td class="num">1/15</td></tr>
+          <tr><td>Divergence / masking</td><td>pre_1</td><td class="num">3</td><td class="num">50.7</td><td class="num">0/3</td></tr>
+          <tr><td>Divergence / masking</td><td>pre_2</td><td class="num">4</td><td class="num">34.5</td><td class="num">0/4</td></tr>
+          <tr><td>Divergence / masking</td><td>pre_3+</td><td class="num">15</td><td class="num">54.6</td><td class="num">1/15</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Honest reads</h2>
+    <ul>
+      <li>Mean percentiles for structural distress (56–62) are above the 50th-percentile chance line — directionally consistent with Phase 18.</li>
+      <li>0 / 7 in the top decile at lag pre_1 / pre_2 is consistent with the Phase-18 anchored top-decile lift of 1.81× (top 10% catches ~ 18% of anchored positives).</li>
+      <li>Joint-collapse severity at pre_2 mean percentile 73.7 (N = 4) is suggestive but tiny.</li>
+      <li>Divergence / masking percentiles straddle chance — consistent with its role as a divergence diagnostic, not a Chapter 11 / Item 1.03 distress screen.</li>
+    </ul>
+
+    <div class="callout">
+      <p style="margin:0;">
+        <strong>What this is:</strong> a directional out-of-time
+        check. <strong>What this is not:</strong> a statistical
+        out-of-time validation. With N = 22 across three lag
+        classes, no AUROC / CI is meaningful. The Phase-18
+        finding is <strong>not contradicted</strong> by the
+        refresh; it is also <strong>not strongly confirmed</strong>.
+      </p>
+    </div>
+
+    <div class="source-basis">
+      <strong>Source basis:</strong> public summary of
+      <code>CORPORATE_PHASE19_ANCHOR_REFRESH_NOTE.md</code> and
+      <code>processed/phase19_anchor_refresh_validation.csv</code>
+      in the project repository.
+    </div>
+
+    <p class="small muted">Back to <a href="../validation.html">Validation</a> &middot; <a href="../evidence.html">Evidence</a> &middot; <a href="index.html">Documents index</a>.</p>
+  </main>
+
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <div><strong>Corporate A/G Research Extension</strong><br>Built on public SEC EDGAR data.<br>Locked Phase 19 freeze, 2026-04-26.</div>
+      <div><ul><li><a href="../methodology.html">Methodology</a></li><li><a href="../limitations.html">Limitations</a></li><li><a href="../commercial-use.html">Commercial use &amp; contact</a></li></ul></div>
+    </div>
+  </footer>
+</body>
+</html>

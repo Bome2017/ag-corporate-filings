@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Limitations of the Corporate A/G Research Extension — what it is not, the main caveats from Phase 19 hardening, why it is still worth keeping, and what would justify reopening the corporate branch.">
+  <title>Limitations — Corporate A/G Research Extension</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="site-head-inner">
+      <span class="brand"><a href="index.html">Corporate A/G Research Extension</a></span>
+      <span class="brand-sub">SEC public-company structural distress study</span>
+    </div>
+  </header>
+  <nav class="site-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="index.html">Overview</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="validation.html">Validation</a>
+      <a href="evidence.html">Evidence</a>
+      <a href="limitations.html" class="current">Limitations</a>
+      <a href="commercial-use.html">Commercial Use</a>
+    </div>
+  </nav>
+
+  <section class="page-head">
+    <div class="page-head-inner">
+      <p class="page-head-eyebrow">Limitations</p>
+      <h1>What this is not, what it is, and what would justify reopening</h1>
+      <p class="lead">Corporate A/G is a research-grade extension. Many of the things people might hope a "corporate distress" site would do, this one does not do. Read this page before drawing conclusions from anywhere else.</p>
+    </div>
+  </section>
+
+  <main>
+    <h2>1. What this is not</h2>
+    <div class="callout forbid">
+      <ul style="margin:0;" class="tight-list">
+        <li>Not a bankruptcy prediction product.</li>
+        <li>Not investment advice.</li>
+        <li>Not a credit rating.</li>
+        <li>Not a production risk model.</li>
+        <li>Not a replacement for credit analysis.</li>
+        <li>Not equivalent to the project&rsquo;s banking branch.</li>
+      </ul>
+    </div>
+
+    <h2>2. Main limitations</h2>
+    <h3>Single primitives slightly outperform the composite on AUROC</h3>
+    <p>
+      On the Phase-18 test fold, two single-feature baselines —
+      <code>neg_g4_ocf_assets_z</code> (operating cash flow ÷
+      assets, oriented risk-up) AUROC 0.736 and
+      <code>neg_g2_interest_coverage_z</code> AUROC 0.726 —
+      slightly beat <code>structural_distress_lam0_0</code>
+      (AUROC 0.711) by 1.5–2.5 pp. The composite&rsquo;s value
+      is robustness (graceful degradation when one primitive is
+      missing) and regime separation, not maximum raw
+      discrimination.
+    </p>
+
+    <h3>Low base rate limits precision and F1</h3>
+    <p>
+      Eligible-universe Chapter-11 incidence is on the order of
+      0.5 – 1.0% per year. Even an AUROC of 0.71 produces low
+      precision at any practical operating threshold; the
+      Watch-band precision is roughly 3%. F1 collapses at low
+      base rate and is not used as a headline metric.
+    </p>
+
+    <h3>Top-1% tail dropoff</h3>
+    <p>
+      The top 1% of structural-distress scores has lower event
+      rate than the Watch band (80–95th percentile). The very
+      tail is noise-prone. Operators should not treat the top
+      1% as the highest-action band.
+    </p>
+
+    <h3>Sector heterogeneity remains</h3>
+    <p>
+      Pooled AUROC 0.711 hides cell-to-cell variation. The
+      Manufacturing-3 (durables / electronics) sector cell
+      shows AUROC 0.639 — meaningfully weaker than the pooled
+      headline. Wholesale / Retail Trade and Manufacturing-2
+      (food / textiles / chem / petr) are the strongest
+      reliable cells.
+    </p>
+
+    <h3>Item 1.03 anchor semantics imperfect</h3>
+    <p>
+      Even after the LLM-assisted scope classifier, about 25%
+      of anchored CIKs sit in <code>ambiguous_item_103</code> or
+      non-direct buckets. The strict-label cohort (231
+      positives) is the cleanest cell; the all-anchored cohort
+      (354 positives) introduces some scope noise.
+    </p>
+
+    <h3>XBRL coverage / filtering matters</h3>
+    <p>
+      Companies with thin XBRL coverage are excluded by design.
+      The Phase-12 SIC + facts-size + 3-Assets gates are
+      conservative; some genuinely-distressed firms are filtered
+      out before scoring.
+    </p>
+
+    <h3>Bankruptcy paths beyond Item 1.03</h3>
+    <p>
+      Chapter-7 cases, Item 5.02 / Item 8.01 attachments, and
+      going-private transactions are not captured by the
+      anchor table.
+    </p>
+
+    <h3>Divergence / masking — internal evidence only</h3>
+    <p>
+      The Phase-19 divergence-anchor study used an internal
+      future-state anchor (G drops by ≥ 1 z over 1–2 years OR
+      firm enters pre-petition state). The result is suggestive
+      (canonical R AUROC 0.705 within the divergence-state
+      cohort) but it is <strong>not</strong> external
+      validation. An external divergence-anchor study is a
+      future-phase candidate.
+    </p>
+
+    <h3>Current company rankings are not published</h3>
+    <p>
+      This site does not distribute per-company distress
+      scores, top-N watchlists, or any ranked list. That is a
+      deliberate constraint, not an oversight.
+    </p>
+
+    <h2>3. Why it is still worth keeping</h2>
+    <div class="callout ok">
+      <ul style="margin:0;">
+        <li>The full-population signal <strong>survives</strong> with documented attenuation across a five-cohort validation chain.</li>
+        <li>The geometry roles are <strong>interpretable</strong> and separate broad structural distress, near-petition severity, and divergence / masking.</li>
+        <li>The work demonstrates a <strong>domain-specific A/G transfer</strong> from the hardened banking branch to public corporate filings.</li>
+        <li>The chain provides a <strong>research artifact</strong> with public-data lineage, reproducible from raw SEC endpoints.</li>
+      </ul>
+    </div>
+
+    <h2>4. What would justify reopening corporate</h2>
+    <p>
+      The corporate branch is <strong>frozen</strong> as of
+      Phase 19. A future Phase-20 step would only be justified
+      if one of the following is true:
+    </p>
+    <ul>
+      <li><strong>Out-of-time anchor refresh</strong> — quarterly continuation of the EDGAR FTS query, broader item-code coverage (Item 5.02 / 8.01 attachments), and a partial Phase-18 panel rebuild for any new admitted CIKs.</li>
+      <li><strong>External divergence-anchor validation</strong> — convert the Phase-19 internal future-state anchor into an external one using restatements / going-concern / material-weakness disclosures.</li>
+      <li><strong>Sector-stratified expansion</strong> — deepen the analysis in the weak Manufacturing-3 cell to understand whether the durables / electronics signal is recoverable.</li>
+      <li><strong>Calibration audit</strong> — isotonic / Platt scaling on train, applied to test, replacing quantile bands with a calibrated probability output.</li>
+      <li><strong>Benchmark comparison</strong> against more established distress models (e.g., a properly-built Altman Z-score where the required variables are reliably available).</li>
+    </ul>
+
+    <h2>Discipline note</h2>
+    <p>
+      We chose to lock at Phase 19 with the
+      baseline-comparison finding visible rather than to
+      suppress it or tune it away. The goal of this site is to
+      make the corporate evidence chain available with its
+      limits intact, not to advertise a stronger conclusion
+      than the data supports.
+    </p>
+  </main>
+
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <div>
+        <strong>Corporate A/G Research Extension</strong><br>
+        Built on public SEC EDGAR data.<br>
+        Locked Phase 19 freeze, 2026-04-26.
+      </div>
+      <div>
+        <ul>
+          <li><a href="evidence.html">Source documents</a></li>
+          <li><a href="docs/final-freeze.html">Final Freeze Note</a></li>
+          <li><a href="commercial-use.html">Commercial use &amp; contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

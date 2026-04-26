@@ -1,0 +1,78 @@
+{
+  "title": "Corporate A/G Research Extension",
+  "subtitle": "A public SEC filings study of structural distress and corporate deterioration regimes.",
+  "status": "Research-grade — not production — weaker than banking",
+  "final_classification": "LOCKED / research-grade extension / not production / weaker than banking / worth preserving",
+  "frozen_at_phase": 19,
+  "freeze_date": "2026-04-26",
+  "dataset": {
+    "universe": "eligible SEC non-financial operating companies under project filters",
+    "phase18_admitted_ciks": 3412,
+    "phase18_panel_rows": 38748,
+    "phase18_post_gate_rows": 36041,
+    "phase18_test_rows": 19410,
+    "phase18_strict_positives": 231,
+    "phase18_anchored_positives": 354,
+    "test_fy_min": 2019,
+    "test_fy_max": 2025,
+    "train_fy_max": 2018
+  },
+  "doctrine_summary": {
+    "primary_full_population_screen": {
+      "public_label": "Structural distress",
+      "internal_metric": "structural_distress_lam0_0",
+      "role": "broad structural Ch.11 screening on the eligible public-company universe"
+    },
+    "joint_collapse_severity_geometry": {
+      "public_label": "Joint-collapse severity",
+      "internal_metric": "co_collapse_lam0_0",
+      "role": "near-petition / joint-deterioration geometry"
+    },
+    "divergence_masking_diagnostic": {
+      "public_label": "Divergence / masking",
+      "internal_metric": "neg_R_lam0_0 (= A − G)",
+      "role": "diagnostic for the divergence regime; chance for broad Ch.11 screening"
+    },
+    "stronger_than_composite_on_AUROC": [
+      "Operating cash flow / assets (single primitive; AUROC 0.736)",
+      "Interest coverage (single primitive; AUROC 0.726)"
+    ],
+    "composite_added_value": "interpretive architecture and robustness, not maximum AUROC",
+    "comparison_to_banking": "research-grade extension; weaker than banking; banking remains flagship"
+  },
+  "allowed_claim_summary": [
+    "research-grade preliminary full-population screening evidence",
+    "eligible SEC non-financial operating-company universe under project filters",
+    "ranked monitoring / triage primitive",
+    "domain-specific A/G transfer attempt",
+    "weaker than the banking branch",
+    "not production-ready",
+    "not a bankruptcy prediction product",
+    "Watch band (80–95th percentile of structural distress) is the most informative monitoring tier",
+    "canonical R retained for divergence/masking with first internal evidence; external validation pending"
+  ],
+  "forbidden_claim_summary": [
+    "predicts bankruptcy",
+    "validated commercial bankruptcy predictor",
+    "production model",
+    "regulatory-grade",
+    "replaces credit analysis",
+    "investment advice",
+    "credit rating",
+    "top bankruptcy risks / highest-risk companies / likely to fail",
+    "works as well as banking",
+    "the A/G composite improves on simple financial primitives (it does not, on this data)",
+    "top-1% structural-distress flags are highest-priority (tail dropoff)",
+    "canonical R is validated (only first internal evidence)"
+  ],
+  "links": {
+    "final_freeze_note": "docs/final-freeze.html",
+    "phase18_results": "docs/phase18-results.html",
+    "phase19_decision_note": "docs/phase19-decision.html",
+    "baseline_comparison": "docs/baseline-comparison.html",
+    "sector_analysis": "docs/sector-analysis.html",
+    "calibration_policy": "docs/calibration-policy.html",
+    "divergence_anchor": "docs/divergence-anchor.html",
+    "anchor_refresh": "docs/anchor-refresh.html"
+  }
+}

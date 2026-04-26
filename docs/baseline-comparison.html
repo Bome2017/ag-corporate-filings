@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Phase 19 baseline comparison for the Corporate A/G Research Extension. Two single primitives slightly outperform the A/G composite on AUROC.">
+  <title>Baseline Comparison — Corporate A/G Research Extension</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="site-head-inner">
+      <span class="brand"><a href="../index.html">Corporate A/G Research Extension</a></span>
+      <span class="brand-sub">SEC public-company structural distress study</span>
+    </div>
+  </header>
+  <nav class="site-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="../index.html">Overview</a>
+      <a href="../methodology.html">Methodology</a>
+      <a href="../validation.html">Validation</a>
+      <a href="../evidence.html" class="current">Evidence</a>
+      <a href="../limitations.html">Limitations</a>
+      <a href="../commercial-use.html">Commercial Use</a>
+    </div>
+  </nav>
+
+  <section class="page-head">
+    <div class="page-head-inner">
+      <p class="page-head-eyebrow">Document &middot; Baseline Comparison</p>
+      <h1>Baseline Comparison</h1>
+      <p class="lead">A reviewer-defense head-to-head: A/G composite vs single-primitive baselines vs an Altman-style proxy. The honest finding is that two single primitives slightly outperform the composite on AUROC.</p>
+    </div>
+  </section>
+
+  <main>
+    <section class="doc-summary">
+      <h2>Summary</h2>
+      <p>
+        The Phase-18 test fold was scored with two kinds of
+        rank functions: the locked Phase-13 candidate
+        geometries (composite scores) and a set of
+        single-primitive baselines (each oriented risk-up by
+        negating its z-score). The two strongest single
+        primitives — operating cash flow / assets and interest
+        coverage — slightly outperform the strongest A/G
+        composite on AUROC.
+      </p>
+    </section>
+
+    <h2>Strict-label leaderboard</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Score</th><th>Kind</th><th class="num">AUROC</th><th class="num">AP</th><th class="num">Lift @ 10%</th><th class="num">Lift @ 1%</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Operating cash flow / assets (risk-up)</td><td>baseline</td><td class="num"><strong>0.736</strong></td><td class="num">0.024</td><td class="num">2.34×</td><td class="num">0.00×</td></tr>
+          <tr><td>Interest coverage (risk-up)</td><td>baseline</td><td class="num">0.726</td><td class="num">0.031</td><td class="num">1.93×</td><td class="num">3.35×</td></tr>
+          <tr><td>Altman-like proxy (Phase-19 weighted)</td><td>baseline (proxy)</td><td class="num">0.714</td><td class="num">0.023</td><td class="num">1.94×</td><td class="num">0.00×</td></tr>
+          <tr><td>Return on assets (risk-up)</td><td>baseline</td><td class="num">0.713</td><td class="num">0.022</td><td class="num">1.82×</td><td class="num">0.87×</td></tr>
+          <tr><td><strong>Structural distress (composite)</strong></td><td><strong>candidate</strong></td><td class="num"><strong>0.711</strong></td><td class="num">0.023</td><td class="num">2.21×</td><td class="num">0.43×</td></tr>
+          <tr><td>G-aggregate mean (= structural by construction)</td><td>baseline</td><td class="num">0.711</td><td class="num">0.023</td><td class="num">2.21×</td><td class="num">0.43×</td></tr>
+          <tr><td>G+A aggregate mean</td><td>baseline</td><td class="num">0.688</td><td class="num">0.021</td><td class="num">2.08×</td><td class="num">0.00×</td></tr>
+          <tr><td>Joint-collapse severity (composite)</td><td>candidate</td><td class="num">0.677</td><td class="num">0.021</td><td class="num">1.90×</td><td class="num">0.00×</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Key reads</h2>
+    <ul>
+      <li><strong>Two single primitives lead the table.</strong> Operating cash flow / assets (0.736) and interest coverage (0.726) slightly outperform the composite (0.711) by 1.5 – 2.5 pp.</li>
+      <li><strong>The composite equals its G-aggregate by construction.</strong> "Structural distress" and "G-aggregate mean" are the same thing — both AUROC 0.711.</li>
+      <li><strong>Adding the A side dilutes rank discrimination.</strong> The seven-primitive G+A aggregate mean (0.688) is worse than the G-only mean (0.711). On a wide non-distress population, A introduces sectoral noise; A&rsquo;s value is in joint-collapse severity, not in pooled rank.</li>
+      <li><strong>Altman-like proxy ties the composite.</strong> A transparent weighted primitive composite (NOT the actual Altman Z-score; we don&rsquo;t have market cap, retained earnings, EBIT, or sales/assets reliably from the SEC companyfacts feed for the full universe) gives AUROC 0.714 — essentially indistinguishable from structural distress.</li>
+    </ul>
+
+    <h2>Implication for the corporate story</h2>
+    <div class="callout uncomf">
+      <p>
+        The corporate A/G composite is <strong>not</strong> the
+        strongest raw discriminator on this dataset. Its
+        defensible value is twofold:
+      </p>
+      <ul>
+        <li><strong>Robustness.</strong> Single primitives can be unstable when one input is missing or degenerate (e.g., interest coverage for cash-rich firms; OCF/assets for asset-light firms). The composite degrades more gracefully.</li>
+        <li><strong>Regime separation.</strong> The composite framework distinguishes broad structural distress (G-only), joint-collapse severity (G + A), and divergence / masking (A − G) — interpretive structure that single primitives don&rsquo;t supply on their own.</li>
+      </ul>
+    </div>
+
+    <h2>Wording the corporate story can use</h2>
+    <ul>
+      <li>"The corporate G aggregate is informationally consistent with the strongest single G primitives."</li>
+      <li>"The composite is more robust than any single primitive to missing-data and sectoral noise."</li>
+      <li>"Operating cash flow / assets and interest coverage are the strongest single-primitive screens for Chapter 11 / Item 1.03 distress in this dataset."</li>
+      <li>"Adding the A layer to the G aggregate dilutes rank discrimination on a wide population; the A side carries joint-collapse severity (<code>co_collapse</code>) rather than pooled discrimination."</li>
+    </ul>
+
+    <h2>Wording the corporate story cannot use</h2>
+    <div class="callout forbid">
+      <ul style="margin:0;">
+        <li>"The A/G architecture beats simple financial primitives." (It does not, here.)</li>
+        <li>"The composite is more than its parts." (Not in raw discrimination.)</li>
+        <li>"Only multi-channel scoring captures distress." (Single primitives capture most of it.)</li>
+      </ul>
+    </div>
+
+    <div class="source-basis">
+      <strong>Source basis:</strong> this is a public summary of
+      <code>CORPORATE_PHASE19_BASELINE_COMPARISON.md</code> in
+      the project repository. Numbers come from
+      <code>processed/phase19_baseline_comparison.csv</code>.
+    </div>
+
+    <p class="small muted">Back to <a href="../validation.html">Validation</a> &middot; <a href="../evidence.html">Evidence</a> &middot; <a href="index.html">Documents index</a>.</p>
+  </main>
+
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <div><strong>Corporate A/G Research Extension</strong><br>Built on public SEC EDGAR data.<br>Locked Phase 19 freeze, 2026-04-26.</div>
+      <div><ul><li><a href="../methodology.html">Methodology</a></li><li><a href="../limitations.html">Limitations</a></li><li><a href="../commercial-use.html">Commercial use &amp; contact</a></li></ul></div>
+    </div>
+  </footer>
+</body>
+</html>

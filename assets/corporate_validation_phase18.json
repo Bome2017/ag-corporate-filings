@@ -1,0 +1,120 @@
+{
+  "phase": 18,
+  "phase_name": "Full-population validation (locked)",
+  "freeze_date": "2026-04-26",
+  "test_fold": {
+    "fy_min": 2019,
+    "fy_max": 2025,
+    "n_test_rows": 19410,
+    "n_strict_positives": 231,
+    "n_anchored_positives": 354,
+    "test_base_rate_strict": 0.0119,
+    "test_base_rate_anchored": 0.0182
+  },
+  "fixed_threshold_z": 0.0,
+  "bootstrap": {
+    "kind": "CIK-cluster",
+    "n_resamples": 500,
+    "seed": 20260424
+  },
+  "label_tracks": [
+    {
+      "name": "direct_high_medium",
+      "public_label": "Strict / direct",
+      "description": "anchored CIKs with Phase-17 LLM scope = registrant_direct AND confidence in {high, medium}",
+      "geometries": [
+        {
+          "public_label": "Structural distress",
+          "internal_metric": "structural_distress_lam0_0",
+          "role": "primary full-population screen",
+          "auroc": 0.711,
+          "auroc_ci": [0.660, 0.753],
+          "ap": 0.023,
+          "lift_top10pct": 2.21,
+          "lift_top5pct": 1.39,
+          "lift_top1pct": 0.43
+        },
+        {
+          "public_label": "Joint-collapse severity",
+          "internal_metric": "co_collapse_lam0_0",
+          "role": "joint-collapse / near-petition severity",
+          "auroc": 0.677,
+          "auroc_ci": [0.631, 0.726],
+          "ap": 0.021,
+          "lift_top10pct": 1.90,
+          "lift_top5pct": 1.04,
+          "lift_top1pct": 0.00
+        },
+        {
+          "public_label": "Divergence / masking",
+          "internal_metric": "neg_R_lam0_0",
+          "role": "divergence/masking diagnostic; chance for broad Ch.11 screen",
+          "auroc": 0.489,
+          "auroc_ci": [0.419, 0.551],
+          "ap": 0.016,
+          "lift_top10pct": 2.03,
+          "lift_top5pct": 1.99,
+          "lift_top1pct": 3.03
+        }
+      ]
+    },
+    {
+      "name": "all_anchored",
+      "public_label": "All-anchored",
+      "description": "every Phase-14 anchored CIK pre-petition row",
+      "geometries": [
+        {
+          "public_label": "Structural distress",
+          "internal_metric": "structural_distress_lam0_0",
+          "role": "primary full-population screen",
+          "auroc": 0.683,
+          "auroc_ci": [0.639, 0.719],
+          "ap": 0.030,
+          "lift_top10pct": 1.81,
+          "lift_top5pct": 1.19,
+          "lift_top1pct": 0.85
+        },
+        {
+          "public_label": "Joint-collapse severity",
+          "internal_metric": "co_collapse_lam0_0",
+          "role": "joint-collapse / near-petition severity",
+          "auroc": 0.642,
+          "auroc_ci": [0.602, 0.683],
+          "ap": 0.027,
+          "lift_top10pct": 1.55,
+          "lift_top5pct": 0.90,
+          "lift_top1pct": 0.28
+        },
+        {
+          "public_label": "Divergence / masking",
+          "internal_metric": "neg_R_lam0_0",
+          "role": "divergence/masking diagnostic; chance for broad Ch.11 screen",
+          "auroc": 0.510,
+          "auroc_ci": [0.457, 0.554],
+          "ap": 0.024,
+          "lift_top10pct": 2.03,
+          "lift_top5pct": 2.26,
+          "lift_top1pct": 2.54
+        }
+      ]
+    }
+  ],
+  "per_year_structural_distress_strict": [
+    {"fy": 2019, "n_rows": 2402, "n_pos": 58, "auroc": 0.668, "ap": 0.044, "lift_top10pct": 2.24},
+    {"fy": 2020, "n_rows": 2545, "n_pos": 51, "auroc": 0.760, "ap": 0.042, "lift_top10pct": 2.16},
+    {"fy": 2021, "n_rows": 2852, "n_pos": 51, "auroc": 0.725, "ap": 0.034, "lift_top10pct": 1.57},
+    {"fy": 2022, "n_rows": 2963, "n_pos": 45, "auroc": 0.698, "ap": 0.028, "lift_top10pct": 1.78},
+    {"fy": 2023, "n_rows": 2972, "n_pos": 21, "auroc": 0.708, "ap": 0.016, "lift_top10pct": 1.91},
+    {"fy": 2024, "n_rows": 2897, "n_pos":  5, "auroc": 0.719, "ap": 0.005, "lift_top10pct": 2.00},
+    {"fy": 2025, "n_rows": 2779, "n_pos":  0, "auroc": null,  "ap": null,  "lift_top10pct": null}
+  ],
+  "caveats": [
+    "Threshold-fixed at z=0.0; no test-fold tuning.",
+    "F1 not reported as a headline metric; it collapses at low base rate.",
+    "Top-1% lift for structural and joint-collapse is below 1× — documented tail dropoff; do NOT treat top 1% as highest-action band.",
+    "Divergence AUROC bracketing 0.5 is expected (chance) for broad Ch.11 screening; canonical R is retained for divergence/masking only.",
+    "Per-year AUROC stable across FY 2019–2024 (range 0.67–0.76 for structural distress); FY 2025 has zero positives (anchor cliff).",
+    "20-baseline Phase 12/13/15/16/17 artifacts byte-identical (md5 lock holds)."
+  ],
+  "source_document": "docs/phase18-results.html"
+}

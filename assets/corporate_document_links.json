@@ -1,0 +1,88 @@
+{
+  "as_of": "2026-04-26",
+  "categories": [
+    {
+      "category": "Start here",
+      "documents": [
+        {
+          "title": "Final Freeze Note",
+          "filename": "docs/final-freeze.html",
+          "description": "Plain-language final lock document. What the corporate extension is, what it is not, geometry roles, and the operator's claim discipline."
+        },
+        {
+          "title": "Phase 19 Decision Note",
+          "filename": "docs/phase19-decision.html",
+          "description": "Integrated two-label decision across the five Phase-19 hardening tracks. Honest 'signal survives but is weaker than simple baselines' framing lives here."
+        }
+      ]
+    },
+    {
+      "category": "Core validation",
+      "documents": [
+        {
+          "title": "Phase 18 Full-Population Results",
+          "filename": "docs/phase18-results.html",
+          "description": "The locked Phase-18 result on the full eligible-universe panel. Pooled and per-year metrics; the comparison chain across Phases 15–18."
+        },
+        {
+          "title": "Baseline Comparison",
+          "filename": "docs/baseline-comparison.html",
+          "description": "A/G composite vs single-primitive baselines vs Altman-style proxy. The reviewer-defense write-up of the 'single primitives slightly beat the composite' finding."
+        },
+        {
+          "title": "Sector-Stratified Analysis",
+          "filename": "docs/sector-analysis.html",
+          "description": "Per-SIC-division metrics with explicit reliability flags. Manufacturing-3 (durables / electronics) is the weak cell."
+        },
+        {
+          "title": "Calibration Policy",
+          "filename": "docs/calibration-policy.html",
+          "description": "Predeclared monitoring-band policy on structural distress. Includes the documented top-1% tail dropoff."
+        },
+        {
+          "title": "Divergence-Anchor Study",
+          "filename": "docs/divergence-anchor.html",
+          "description": "Internal future-state divergence-anchor study; first internal evidence supporting canonical R for its intended divergence regime."
+        },
+        {
+          "title": "Anchor Refresh Note",
+          "filename": "docs/anchor-refresh.html",
+          "description": "Bounded EDGAR FTS refresh from 2026-01-01 onward; 6 new high-confidence Item-1.03 anchors; descriptive 22-row out-of-time check."
+        }
+      ]
+    },
+    {
+      "category": "Reproducibility & artifacts",
+      "documents": [
+        {
+          "title": "Artifact Index",
+          "filename": null,
+          "in_repo_only": true,
+          "description": "Single navigable index of every artifact (CURRENT vs HISTORICAL vs SUPERSEDED). Lives in the project repository as CORPORATE_ARTIFACT_INDEX.md; not duplicated on this public site."
+        },
+        {
+          "title": "Evidence Packet Manifest",
+          "filename": null,
+          "in_repo_only": true,
+          "description": "Compact send-back file list for reviewers. Lives in the project repository as CORPORATE_EVIDENCE_PACKET_MANIFEST.md."
+        },
+        {
+          "title": "Reproducibility Runbook",
+          "filename": null,
+          "in_repo_only": true,
+          "description": "Step-by-step instructions to re-derive locked Phase-18 / Phase-19 outputs from raw SEC data. Lives in the project repository as CORPORATE_REPRODUCIBILITY_RUNBOOK.md."
+        }
+      ]
+    }
+  ],
+  "not_included_in_public_docs": [
+    "raw SEC submissions/CIK*.json (gigabytes; reproducible from public SEC URLs)",
+    "raw SEC companyfacts/CIK*.json (gigabytes; reproducible from public SEC URLs)",
+    "raw 8-K bodies (Phase-16 cached HTML)",
+    "phase18_full_population_panel.csv (~30 MB; per-CIK data; could be misread as public ranking)",
+    "phase18_full_population_scores.csv (per-firm-year z-scores)",
+    "phase18_full_population_geometries.csv (per-firm-year geometry values)",
+    "fetch queue / log / checkpoint files",
+    "any company ranking / top-N list / watchlist"
+  ]
+}
