@@ -32,7 +32,7 @@
       <p class="lead">A public SEC filings study of structural distress and corporate deterioration regimes.</p>
       <div class="badge-row">
         <span class="badge">Research-grade</span>
-        <span class="badge">Full-population validation completed</span>
+        <span class="badge">Phase-18 full-population evidence completed</span>
         <span class="badge warn">Not a prediction product</span>
       </div>
     </div>
@@ -152,8 +152,14 @@
         bankruptcy prediction product, <strong>not</strong> a credit
         rating, <strong>not</strong> investment advice, and
         <strong>not</strong> a replacement for credit analysis.
-        The full discipline is on the <a href="limitations.html">Limitations</a>
-        page; the operator&rsquo;s public claim discipline lives in
+        Simple primitives slightly outperform the composite on broad
+        Chapter 11 AUROC, so the corporate composite should not be
+        described as the strongest binary predictor; its supported
+        value is <strong>diagnostic</strong> — separating structural
+        distress, joint-collapse severity, and divergence / masking
+        regimes. The full discipline is on the
+        <a href="limitations.html">Limitations</a> page; the
+        operator&rsquo;s public claim discipline lives in
         <a href="docs/final-freeze.html">Final Freeze Note</a>.
       </p>
     </div>
@@ -166,6 +172,27 @@
       <li><a href="limitations.html">Limitations</a> &mdash; the blunt list of what this is not.</li>
       <li><a href="commercial-use.html">Commercial Use</a> &mdash; access boundary and contact.</li>
     </ul>
+
+    <h2>Related Public Demos</h2>
+    <p>
+      Related public demos from the same project family. Each demo has its own
+      scope, assumptions, validation status, and limitation notes.
+    </p>
+    <div class="card-grid">
+      <div class="card">
+        <h3><a href="https://bome2017.github.io/ag-bank-scoreboard/">A/G Bank Scoreboard</a></h3>
+        <p>Public dashboard for A/G-style bank risk monitoring using appearance/ground divergence signals and documented validation boundaries.</p>
+      </div>
+      <div class="card">
+        <h3><a href="https://bome2017.github.io/ag-higher-education/">A/G Higher Education</a></h3>
+        <p>Exploratory A/G-style higher-education institutional risk/stability demo with explicit data-scope limits.</p>
+      </div>
+      <div class="card">
+        <h3><a href="https://bome2017.github.io/Replay-Verifier/">Track B Bounded Replay-Risk Audit</a></h3>
+        <p>Bounded workflow replay-risk demo that checks whether scoped AI-agent/SaaS workflows can reach prohibited states within a configured model and bound.</p>
+      </div>
+    </div>
+    <p class="muted small">Scope and assumptions differ by demo.</p>
   </main>
 
   <footer class="site-foot">
